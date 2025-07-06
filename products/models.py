@@ -54,7 +54,7 @@ class Product(models.Model):
 
 
     def __str__(self):
-        return self.name
+        return self.product_name
 
     class Meta:
         verbose_name = "Product"
@@ -67,6 +67,6 @@ class MoreProductImage(models.Model):
     image = CloudinaryField('image', null=True, blank=True) 
 
     def __str__(self):
-        return f"Image for {self.product.name}"
+        return f"Image for {self.product.product_name}"
 
 
