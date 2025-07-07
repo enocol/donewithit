@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import render
 from django.db.models import Q
 from .models import Product
@@ -12,6 +13,9 @@ def product_list(request):
             Q(product_name__icontains=search_query) |
             Q(description__icontains=search_query)
         )
+        if not products.exists():
+            messages.error(request, "No products found matching your search criteria.")
+            products = Product.objects.none()  # Return an empty queryset if no products found
     else:
         products = Product.objects.all()  # or .none() if you want no default results
 

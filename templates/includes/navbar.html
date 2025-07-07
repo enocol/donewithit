@@ -27,17 +27,22 @@
             aria-expanded="false"
             >Categories</a
           >
-          <ul class="dropdown-menu">
-            {% for cat in categories %}
-            <li>
-              <a
-                class="dropdown-item"
-                href="{% url 'product_list' %}?category={{ cat.name|urlencode }}"
-              >
-                {{ cat.name }}
-              </a>
-            </li>
-            {% endfor %}
+          <ul class="dropdown-menu p-3" style="width: 700px">
+            <div class="row">
+              {% for cat in categories %}
+              <div class="col-2 shadow p-2">
+                
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="{% url 'product_list' %}?category={{ cat.name }}"
+                  >
+                    {{ cat.name }}
+                  </a>
+                </li>
+              </div>
+              {% endfor %}
+            </div>
           </ul>
         </li>
 
