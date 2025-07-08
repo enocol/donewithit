@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
 from .models import Product
 from .models import Category
@@ -24,4 +24,16 @@ def product_list(request):
         'categories': categories,
     }
     return render(request, 'products/product_list.html', context)
+
+
+def product_detail(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    if not product:
+        messages.error(request, "Product not found.")
+        return render(request, 'products/product_list.html', {})
+
+    context = {
+        'product': product,
+    }
+    return render(request, 'products/product_detail.html', context)
 

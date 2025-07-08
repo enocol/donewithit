@@ -17,12 +17,14 @@
     />
   </head>
   <body>
-    <header>{% include 'includes/navbar.html' %}</header>
+    <header class="z-3">{% include 'includes/navbar.html' %}</header>
 
    
-        {% block content %}
+       <section>
+         {% block content %}
         
-        {% endblock %}
+         {% endblock %}
+       </section>
  
 
 
