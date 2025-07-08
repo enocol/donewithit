@@ -39,8 +39,10 @@
             <p>{{ product.description }}</p>
             <p>Price: ${{ product.price }}</p>
             <p>Category: {{ product.category.name }}</p>
-            <form action="{}" method="post">
+            <form action="{% url 'add_to_cart' product.id %}" method="post">
                 {% csrf_token %}
+
+                <input type="hidden" name="product" class="form-control mb-2">
                <button type="submit" class="btn btn-success">Add to Cart</button>
             </form>
 

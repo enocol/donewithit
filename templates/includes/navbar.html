@@ -85,14 +85,14 @@
     </form>
     <ul class="navbar-nav mx-5">
       <li class="nav-item">
-        {% if grand_total %}
-        <a class="nav-link" href="#"
-          >Cart ({{ grand_total | floatformat:2 }})</a
+        {% if cart_items %}
+        <a class="nav-link" href="{% url 'shopping_cart' %}"
+          >Cart ({{ cart_total | floatformat:2 }})</a
         >
       </li>
       {% else %}
       <li class="nav-item">
-        <a class="nav-link" href="#">Cart (£0.0)</a>
+        <a class="nav-link" href="{% url 'shopping_cart' %}">Cart (£0.0)</a>
       </li>
       {% endif %}
     </ul>
