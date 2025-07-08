@@ -28,12 +28,14 @@ def product_list(request):
 
 def product_detail(request, product_id):
     product = get_object_or_404(Product, id=product_id)
+    categories = Category.objects.all()
     if not product:
         messages.error(request, "Product not found.")
         return render(request, 'products/product_list.html', {})
 
     context = {
         'product': product,
+        'categories': categories,
     }
     return render(request, 'products/product_detail.html', context)
 
