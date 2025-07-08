@@ -30,14 +30,14 @@
     {% for product in products %}
     <div class="col-6 col-sm-6 col-md-2 mb-4">
      <a href="{% url 'product_detail' product.id %}">
-       <div class="card ">
+       <div class="card border-0 shadow-sm">
         <img
           src="{{ product.main_image.url }}"
           style="height: 150px"
           class="card-img-top"
           alt="{{ product.product_name }}"
         />
-        <div class="card-body">
+        <div class="card-body p-2">
           <h5 class="fs-6">{{ product.product_name }}</h5>
           <p class="card-text">£{{ product.price }}</p>
         </div>
