@@ -4,6 +4,9 @@
     padding: 0;
     font-family: Arial, sans-serif;  
 }
+header {
+    background-color: #f8f9fa;
+}
 
 a {
     text-decoration: none;
@@ -15,4 +18,10 @@ a {
     text-overflow: ellipsis;
     padding: 10px;
 }
+
+.orange-border {
+    border: 2px solid orange;
+}
+
+
 

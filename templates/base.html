@@ -26,6 +26,13 @@
   </head>
   <body>
     <header class="z-3">{% include 'includes/navbar.html' %}</header>
+    <div class="container mt-3">
+      <div class="row">
+        <div class="col-12">
+          {% include 'includes/searchform.html' %}
+        </div>
+      </div>
+    </div>
     
 
     <section>{% block content %} {% endblock %}</section>

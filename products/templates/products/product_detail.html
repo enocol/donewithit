@@ -6,7 +6,7 @@
 
 {% block content %}
 
-<div class="container mt-4">
+<div class="container mt-4 mb-2">
     
 
     <div class="row mb-4">
@@ -29,7 +29,7 @@
         <div class="col-md-6">
             <img
           src="{{ product.main_image.url }}"
-          style="height: 300px"
+          style="height: 350px"
           class="card-img-top"
           alt="{{ product.product_name }}"
         />
@@ -38,7 +38,7 @@
             <h2>{{ product.product_name }}</h2>
             <p>{{ product.description }}</p>
             <p>Price: ${{ product.price }}</p>
-            <p>Category: {{ product.category.name }}</p>
+            <p>Category: {{ product.category.get_display_name }}</p>
             <form action="{% url 'add_to_cart' product.id %}" method="post">
                 {% csrf_token %}
 

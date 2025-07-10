@@ -30,6 +30,7 @@ class Category(models.Model):
         choices=CATEGORY_TYPES,
         default='',
     )
+    display_name = models.CharField(max_length=50, blank=True, null=True)
 
     def __str__(self):
         return f"{self.name}"
@@ -39,8 +40,9 @@ class Category(models.Model):
         verbose_name_plural = "Categories"
         ordering = ['name']
 
+    def get_display_name(self):
+          return dict(self.CATEGORY_TYPES).get(self.name, 'Unknown')
 
-    
 
 class Product(models.Model):
     seller = models.ForeignKey(User, on_delete=models.CASCADE, related_name='products')

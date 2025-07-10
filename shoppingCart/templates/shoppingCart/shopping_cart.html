@@ -2,12 +2,14 @@
 
 
 <div class="container mt-5">
+  <h1>Your Shopping Cart</h1>
   <div class="row">
+     {% if cart_items %}
     <div class="col-6">
-      <h1>Your Shopping Cart</h1>
-      {% if cart_items %}
+      
+     
       <p>You have {{ cart_items|length }} items in your cart.</p>
-      <table class="table">
+      <table class="table table-striped">
         <thead>
           <tr>
             <th>Product</th>
@@ -25,18 +27,26 @@
       </table>
       <a href="#" class="btn btn-primary">Proceed to Checkout</a>
     </div>
-    {% else %}
-    <div class="col-6">
-      <h2>Your cart is empty</h2>
-      <p>Browse our products and add items to your cart.</p>
-      <a href="{% url 'product_list' %}" class="btn btn-primary">Shop Now</a>
-    </div>
-    {% endif %}
+
     <div class="col-6">
       <h2>Total: £{{ cart_total | floatformat:2 }}</h2>
-
     </div>
+    {% else %}
+    <div class="col-6">
+      <p>Your cart is empty</p>
+      <a href="{% url 'product_list' %}" class="btn btn-primary">Shop Now</a>
+    </div>
+
+    <div class="col-6">
+      <h2>Total: £{{ cart_total | floatformat:2 }}</h2>
+      
+    </div>
+
+    
+    
+    
   </div>
+  {% endif %}
 </div>
 
 

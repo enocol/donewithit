@@ -15,9 +15,10 @@ def product_list(request):
         )
         if not products.exists():
             messages.error(request, "No products found matching your search criteria.")
-            products = Product.objects.none()  # Return an empty queryset if no products found
+            products = Product.objects.all()  # Return all products if no products found
     else:
         products = Product.objects.all()  # or .none() if you want no default results
+        messages.info(request, "Please enter a search term to find products.")
 
     context = {
         'products': products,
@@ -28,7 +29,7 @@ def product_list(request):
 
 def product_detail(request, product_id):
     product = get_object_or_404(Product, id=product_id)
-    categories = Category.objects.all()
+    categories = Category.objects.all()  # Fetch all categories for the template
     if not product:
         messages.error(request, "Product not found.")
         return render(request, 'products/product_list.html', {})
