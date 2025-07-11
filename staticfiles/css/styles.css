@@ -2,6 +2,26 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
+    font-family: Arial, sans-serif;  
 }
+header {
+    background-color: #f8f9fa;
+}
+
+a {
+    text-decoration: none;
+}
+
+.card-body {
+    max-height: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 10px;
+}
+
+.orange-border {
+    border: 2px solid orange;
+}
+
+
+
