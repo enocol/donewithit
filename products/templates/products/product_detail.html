@@ -14,16 +14,13 @@
         <div class="col-md-12">
             {% for message in messages %}
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <strong>Holy guacamole!</strong> {{ message }}
+                {{ message }}
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
             {% endfor %}
         </div>
         {% endif %}
-        <div class="col-md-12">
-            <h2>Product Details</h2>
-            <p>Here you can find the details of the selected product.</p>
-        </div>
+       
     </div>
     <div class="row">
         <div class="col-md-6">
