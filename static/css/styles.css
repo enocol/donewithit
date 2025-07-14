@@ -18,9 +18,95 @@ a {
     text-overflow: ellipsis;
     padding: 10px;
 }
+.red-text {
+    font-size: 14px;
+    color: red;
+    font-weight: 700;
+
+}
 
 .orange-border {
     border: 2px solid orange;
+}
+
+.category-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.category-container {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px auto;
+    overflow: auto;
+    width: 100%;
+
+    -ms-overflow-style: none;  /* Hide scrollbar on IE and Edge */
+    scrollbar-width: none;    /* Hide scrollbar on Firefox */
+}
+
+.category-container a {
+    flex: 0 0 auto;
+    padding: 10px 20px;
+    background-color: #e9ecef;
+    border-radius: 5px;
+    margin-right: 10px;
+    font-weight: bold;
+    color: #343a40;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.category-container::-webkit-scrollbar {
+  display: none;             /* Hide scrollbar on Chrome/Safari/Opera */
+}
+
+.scroll-btn {
+  position: absolute;
+  background-color: #ffffff;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 1;
+  padding: 0.2rem 0.5rem;
+  color: #333;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  border-radius: 4px;
+}
+
+.scroll-btn.left {
+  left: 0;
+}
+
+.scroll-btn.right {
+  right: 0;
+}
+
+.category-container a:hover {
+    background-color: #dee2e6;
+}
+
+
+
+@media screen and (max-width: 768px) {
+   .desktop-header {
+        display: none;
+    }
+    
+}
+
+@media screen and (min-width: 769px) {
+    .mobile-header {
+        display: none;
+    }
+    
 }
 
 

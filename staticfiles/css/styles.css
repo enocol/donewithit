@@ -18,6 +18,12 @@ a {
     text-overflow: ellipsis;
     padding: 10px;
 }
+.red-text {
+    font-size: 14px;
+    color: red;
+    font-weight: 700;
+
+}
 
 .orange-border {
     border: 2px solid orange;

@@ -12,6 +12,7 @@
       <table class="table table-striped">
         <thead>
           <tr>
+            <th>Item</th>
             <th>Product</th>
             <th>Price</th>
           </tr>
@@ -19,13 +20,15 @@
         <tbody>
           {% for item in cart_items %}
           <tr>
+            <td><img src="{{ item.main_image }}" alt="{{ item.product_name }}" style="width: 50px;"></td>
             <td>{{ item.product_name }}</td>
             <td>{{ item.price | floatformat:2 }}</td>
           </tr>
           {% endfor %}
         </tbody>
       </table>
-      <a href="#" class="btn btn-primary">Proceed to Checkout</a>
+      <a href="{% url 'checkout' %}" class="btn btn-primary">Proceed to Checkout</a>
+      <a href="{% url 'product_list' %}" class="btn btn-secondary">Continue Shopping</a>
     </div>
 
     <div class="col-6">

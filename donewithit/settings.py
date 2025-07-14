@@ -29,7 +29,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = 'django-insecure-vzw4ucy_)8#u1=iq-e_$r&-xv#rbzy5&*y+y$0rmewz7bpar81'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', ".herokuapp.com", "bookhive.herokuapp.com"]
 
@@ -50,10 +50,18 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'shoppingCart'
+    'shoppingCart',  # Custom app for shopping cart functionality
+    'checkout',  # Custom app for checkout process
+    'crispy_forms',
+    'crispy_bootstrap5',
 ]
 
 SITE_ID = 1
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"  #"bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"  # "bootstrap5"
+
 
 # Authentication backends
 AUTHENTICATION_BACKENDS = [
