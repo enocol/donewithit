@@ -190,3 +190,7 @@ CLOUDINARY_STORAGE = {
 }
 
 DELIVERY_CHARGE = 5.00  # Flat delivery charge for all orders
+
+# Stripe settings
+STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', '')
+STRIPE_CLIENT_SECRET = os.environ.get('STRIPE_CLIENT_SECRET', '')
