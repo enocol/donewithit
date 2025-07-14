@@ -2,10 +2,11 @@
 {% block content %}
 
 <div class="container mt-3">
-  <h2 class="w-100 text-center">Checkout</h2>
+ 
   <div class="row">
     <div class="col-12 col-md-6">
-      <form method="post" novalidate>
+       <h2 class="w-100 text-center">Checkout</h2>
+      <form method="post" novalidate id="checkout-form">
         {% csrf_token %} {{ form|crispy }}
         <h3>Enter Card Details</h3>
         <div class="form-group">
@@ -14,6 +15,7 @@
             <!-- Stripe card element will be inserted here -->
 
           </div>
+          <div id="card-errors" role="alert"></div>
         </div>
         <button type="submit" class="btn btn-primary mt-3 mb-3 w-100">Place Order</button>
       </form>
@@ -22,8 +24,6 @@
       <h2 class="mt-5">Order Summary</h2>
       <p>You have {{ cart_items|length }} items in your cart.</p>
 
-    
-      
       <table class="table table-striped">
         <thead>
           <tr>

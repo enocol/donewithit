@@ -1,13 +1,10 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
 
-
 <div class="container mt-5">
   <h1>Your Shopping Cart</h1>
   <div class="row">
-     {% if cart_items %}
+    {% if cart_items %}
     <div class="col-6">
-      
-     
       <p>You have {{ cart_items|length }} items in your cart.</p>
       <table class="table table-striped">
         <thead>
@@ -20,19 +17,34 @@
         <tbody>
           {% for item in cart_items %}
           <tr>
-            <td><img src="{{ item.main_image }}" alt="{{ item.product_name }}" style="width: 50px;"></td>
+            <td>
+              <img
+                src="{{ item.main_image }}"
+                alt="{{ item.product_name }}"
+                style="width: 50px"
+              />
+            </td>
             <td>{{ item.product_name }}</td>
             <td>{{ item.price | floatformat:2 }}</td>
           </tr>
           {% endfor %}
         </tbody>
       </table>
-      <a href="{% url 'checkout' %}" class="btn btn-primary">Proceed to Checkout</a>
-      <a href="{% url 'product_list' %}" class="btn btn-secondary">Continue Shopping</a>
+     <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <a href="{% url 'checkout' %}" class="btn btn-primary mb-3">Proceed to Checkout</a>
+        </div>
+        <div class="col-12 col-md-6">
+          <a href="{% url 'product_list' %}" class="btn btn-secondary">Continue Shopping</a>
+        </div>
+      </div>
+     </div>
     </div>
 
     <div class="col-6">
       <h2>Total: £{{ cart_total | floatformat:2 }}</h2>
+       <p>Delivery Charge: £{{ delivery_charge | floatformat:2 }}</p>
     </div>
     {% else %}
     <div class="col-6">
@@ -41,19 +53,12 @@
     </div>
 
     <div class="col-6">
-      <h2>Total: £{{ cart_total | floatformat:2 }}</h2>
+      <h2>Totalll: £{{ cart_total | floatformat:2 }}</h2>
+     
       
     </div>
-
-    
-    
-    
   </div>
   {% endif %}
 </div>
-
-
-
-
 
 {% endblock %}

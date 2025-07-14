@@ -9,6 +9,7 @@ def cart_context(request):
     """
     Context processor to add cart information to the context.
     """
+    delivery_charge = settings.DELIVERY_CHARGE
     cart = request.session.get('cart', {})
     cart_items = []
 
@@ -24,6 +25,7 @@ def cart_context(request):
         'cart_items': cart_items,
         'cart_total': sum(float(item['price']) for item in cart_items),
         'cart_count': len(cart_items), 
+        'delivery_charge': delivery_charge,
     }
 
     return context
