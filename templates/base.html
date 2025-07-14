@@ -25,16 +25,11 @@
     {% endblock corecss %}
   </head>
   <body>
-    <header class="z-3">{% include 'includes/navbar.html' %}</header>
-    <div class="container mt-3">
-      <div class="row">
-        <div class="col-12">
-          {% include 'includes/searchform.html' %}
-        </div>
-      </div>
-    </div>
-    
-
+    <header class="z-3">
+      {% include 'includes/deaktopheader.html' %}
+      {% include 'includes/mobileHeader.html' %}
+    </header>
+   
     <section>{% block content %} {% endblock %}</section>
 
     <script
@@ -42,5 +37,6 @@
       integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
       crossorigin="anonymous"
     ></script>
+    <script src="{% static 'js/scripts.js' %}"></script>
   </body>
 </html>
