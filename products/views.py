@@ -19,6 +19,7 @@ def product_list(request):
             products = Product.objects.all()  # Return all products if no products found
     else:
         products = Product.objects.all()  # or .none() if you want no default results
+       
 
     if category_filter:
         products = products.filter(category__name=category_filter)
