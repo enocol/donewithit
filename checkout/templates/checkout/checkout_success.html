@@ -6,6 +6,31 @@
 
 
 {% block content %}
+{% if messages %}
+<div class="container mt-3">
+  <div class="alert alert-success">
+    {% for message in messages %}
+      <p>{{ message }}</p>
+    {% endfor %}
   <h2 class="w-100 text-center">Checkout Success</h2>
-  <p>Your order has been successfully processed!</p>
+  </div>
+</div>
+{% else %}
+<div class="container mt-3">
+  <div class="alert alert-warning">
+    <p>No messages to display.</p>
+  </div>
+</div>
+
+{% endif %}
+
+<div class="container">
+  <p>Order summary:</p>
+  <ul>
+    <li>Order ID: {{ order.id }}</li>
+    <li>Total Amount: ${{ order.grand_total }}</li>
+    <li>Shipping Address: {{ order.address }}</li>
+  </ul>
+</div>
+
 {% endblock content %}

@@ -1,6 +1,5 @@
-from email.mime import message
-from pyexpat.errors import messages
-from django.shortcuts import redirect, render
+from django.contrib import messages
+from django.shortcuts import redirect, render, get_object_or_404
 from checkout.forms import CheckoutForm
 from django.conf import settings
 from checkout.models import Order, OrderItem
@@ -31,29 +30,28 @@ def checkout(request):
         stripe_client_secret = intent['client_secret']
     except Exception as e:
         return render(request, 'checkout/checkout_error.html', {'error': str(e)})
-    
-    
-
     if request.method == 'POST':
         form = CheckoutForm(request.POST)
-        cart = request.session.get('cart', {})
         if form.is_valid():
-            form.save()
+            order = form.save()
+
             for product_id in cart:
-                product = Product.objects.get(id=product_id)
-                product_name = product.name
-                price = product.price
+                product = get_object_or_404(Product, id=product_id)
                 order_item = OrderItem(
-                    order=form.instance,
-                    product_name=product_name,
-                    price=price
-                )
-                if order_item.is_valid():
-                    order_item.save()
-            # Clear the cart after successful checkout
-            request.session['cart'] = {}
-            # Redirect to a success page
-            return redirect('checkout_success')
+                        order=order,
+                        product=product,
+                        price=product.price
+                    )
+                order_item.save()
+
+
+            
+            return redirect('checkout_success', order_id=order.id)
+    else:
+        form = CheckoutForm()
+    
+
+    
     context = {
         'form': CheckoutForm(),
         'stripe_public_key': stripe_public_key,
@@ -63,12 +61,18 @@ def checkout(request):
     return render(request, 'checkout/checkout.html', context)
 
 
-def checkout_success(request, order_id):
+def checkout_success(request, order_id=None):
     # Placeholder for checkout success logic
-    if not request.session.get('cart'):
-        return redirect('product_list')
+   
     order = Order.objects.get(id=order_id) if order_id else None
-    messages.success(request, f"Thank you for your order! Your order with number {order.id} has been successfully placed. An email confirmation will be sent to you shortly")
+    messages.success(request, f'Your order has been placed successfully!, you order id is {order.id}')
+    if not order:
+        return redirect('product_list')
+    
+    order.calculate_order_total()
+    request.session['cart'] = {}
+
+    
     context = {
         'order': order,
     }

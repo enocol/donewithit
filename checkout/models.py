@@ -1,3 +1,4 @@
+from decimal import Decimal
 import uuid
 from django.db import models
 from django.db.models import Sum
@@ -26,10 +27,9 @@ class Order(models.Model):
         return uuid.uuid4().hex.upper()
     
     def calculate_order_total(self):
-        self.order_total = self.order_items.aggregate(Sum('orderitem_total'))['orderitem_total__sum'] or 0
-        self.grand_total = self.order_total + settings.DELIVERY_CHARGE
+        self.order_total = self.order_items.aggregate(Sum('orderitem_total'))['orderitem_total__sum'] or Decimal('0.00')
+        self.grand_total = self.order_total + Decimal(str(settings.DELIVERY_CHARGE))
         self.save()
-        
 
     def save(self, *args, **kwargs):
         if not self.order_number:
@@ -45,12 +45,12 @@ class OrderItem(models.Model):
 
 
     def __str__(self):
-        return f"{self.product.name} (Order {self.order.order_number})"
+        return f"{self.product.product_name} (Order {self.order.order_number})"
     
     def save(self, *args, **kwargs):
-        self.orderitem_total = self.price * self.quantity
+        self.orderitem_total = self.price
         super().save(*args, **kwargs)
 
     def calculate_orderitem_total(self):
-        self.orderitem_total = self.price * self.quantity
+        self.orderitem_total = self.price
         self.save()

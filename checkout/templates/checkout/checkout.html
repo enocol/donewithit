@@ -8,6 +8,21 @@
        <h2 class="w-100 text-center">Checkout</h2>
       <form method="post" novalidate id="checkout-form">
         {% csrf_token %} {{ form|crispy }}
+        {% if user.is_authenticated %}
+       <label for="safe-info">Save my information for next time</label>
+        <input type="checkbox" name="safe-info" id="safe-info">
+        <p class="text-muted">By checking this box, you agree to save your information for future checkouts.</p>
+        {% else %}
+      <div>
+        <div class="alert alert-warning" role="alert">
+          <p>You must be logged in to save your information for future checkouts.</p>
+          <a href="{% url 'account_login' %}" class="btn btn-secondary">Login</a> or
+          <a href="{% url 'account_signup' %}" class="btn btn-secondary"> Sign Up</a>
+      </div>
+        {% endif %}
+
+       
+        
         <h3>Enter Card Details</h3>
         <div class="form-group">
           <label for="card-element">Card Number</label>
