@@ -6,7 +6,7 @@ from django.conf import settings
 
 # Create your models here.
 class Order(models.Model):
-    order_number = models.CharField(max_length=32, unique=True, editable=False)
+    order_number = models.CharField( unique=True, editable=False, default=0)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     email = models.EmailField()
@@ -16,8 +16,8 @@ class Order(models.Model):
     post_code = models.CharField(max_length=20)
     country = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
-    order_total = models.DecimalField(max_digits=10, decimal_places=2)
-    grand_total = models.DecimalField(max_digits=10, decimal_places=2)
+    order_total = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    grand_total = models.DecimalField(max_digits=10, decimal_places=2, default=0)
 
     def __str__(self):
         return f"Order {self.id} by {self.first_name} {self.last_name}"
