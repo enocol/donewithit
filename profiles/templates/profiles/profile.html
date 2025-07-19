@@ -1,0 +1,17 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<div class="container">
+  <h1>User Profile</h1>
+  <div class="row">
+    <div class="col-6">
+      <h1>Account Information</h1>
+      <p>Email: {{ user.email }}</p>
+      <p>Joined: {{ user.date_joined }}</p>
+    </div>
+  </div>
+  <div class="col-6">
+    <h1>Selling Products</h1>
+    <p>Here you can manage your products.</p>
+  </div>
+</div>
+{% endblock %}

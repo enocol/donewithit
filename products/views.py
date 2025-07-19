@@ -1,8 +1,9 @@
 from django.contrib import messages
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Q
 from .models import Product
 from .models import Category
+from .forms import ProductForm
 
 def product_list(request):
     categories = Category.objects.all()  # Assuming you want to use categories in the template
@@ -44,6 +45,24 @@ def product_detail(request, product_id):
         'categories': categories,
     }
     return render(request, 'products/product_detail.html', context)
+
+
+def product_create(request):
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            product = form.save(commit=False)
+            product.seller = request.user  # Assuming you want to associate the product with the logged-in user
+            product.save()
+            messages.success(request, "Product created successfully.")
+            return redirect('product_list')  # Redirect to the product list after creation
+    else:
+        form = ProductForm()
+
+    context = {
+        'form': form,
+    }
+    return render(request, 'products/product_form.html', context)   
 
 
 

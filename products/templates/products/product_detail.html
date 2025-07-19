@@ -36,12 +36,17 @@
             <p>{{ product.description }}</p>
             <p>Price: ${{ product.price }}</p>
             <p>Category: {{ product.category.get_display_name }}</p>
-            <form action="{% url 'add_to_cart' product.id %}" method="post">
+           {% if user.is_authenticated %}
+             <form action="{% url 'add_to_cart' product.id %}" method="post">
                 {% csrf_token %}
 
                 <input type="hidden" name="product" class="form-control mb-2">
                <button type="submit" class="btn btn-success">Add to Cart</button>
             </form>
+              {% else %}
+               <p class="text-muted fs-7">Please log in to add items to your cart.</p>
+               <a href="{}" class="btn btn-primary mt-4">Login</a>
+           {% endif %}
 
             <a href="{% url 'product_list' %}" class="btn btn-primary mt-4">Back to Products</a>
         </div>
