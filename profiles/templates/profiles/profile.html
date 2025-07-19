@@ -12,6 +12,28 @@
   <div class="col-6">
     <h1>Selling Products</h1>
     <p>Here you can manage your products.</p>
+    {% if products %}
+     <table class="table table-striped">
+       <thead>
+         <tr>
+           <th>Product Name</th>
+           <th>Price</th>
+           <th>Image</th>
+         </tr>
+       </thead>
+       <tbody>
+         {% for product in products %}
+           <tr>
+             <td>{{ product.product_name }}</td>
+             <td>{{ product.price }}</td>
+             <td><img src="{{ product.main_image.url }}" alt="{{ product.product_name }}" style="width: 100px; height: auto;"></td>
+           </tr>
+         {% endfor %}
+       </tbody>
+     </table>
+    {% else %}
+      <p>You have no products listed for sale.</p>
+    {% endif %}
   </div>
 </div>
 {% endblock %}
