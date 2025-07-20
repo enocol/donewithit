@@ -1,17 +1,28 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
 
-<div class="container">
-  <h1>User Profile</h1>
+<div class="container mt-4 mb-2">
+    <div class="row mb-4">
+        {% if messages %}
+        <div class="col-md-12">
+            {% for message in messages %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+
   <div class="row">
     <div class="col-6">
       <h1>Account Information</h1>
-      <p>Email: {{ user.email }}</p>
-      <p>Joined: {{ user.date_joined }}</p>
+      <p>Email: {% if user.email %}{{ user.email }}{% else %}Not provided{% endif %}</p>
+      <p>Joined: {% if user.date_joined %}{{ user.date_joined }}{% else %}Not provided{% endif %}</p>
     </div>
-  </div>
-  <div class="col-6">
-    <h1>Selling Products</h1>
-    <p>Here you can manage your products.</p>
+     <div class="col-6">
+    <h1>Manage your Products</h1>
+   
     {% if products %}
      <table class="table table-striped">
        <thead>
@@ -19,6 +30,7 @@
            <th>Product Name</th>
            <th>Price</th>
            <th>Image</th>
+          <th>Actions</th>
          </tr>
        </thead>
        <tbody>
@@ -27,6 +39,13 @@
              <td>{{ product.product_name }}</td>
              <td>{{ product.price }}</td>
              <td><img src="{{ product.main_image.url }}" alt="{{ product.product_name }}" style="width: 100px; height: auto;"></td>
+             <td>
+               <a href="" class="btn btn-primary">Edit</a>
+               <form action="" method="post" style="display:inline;">
+                 {% csrf_token %}
+                 <button type="submit" class="btn btn-danger">Delete</button>
+               </form>
+             </td>
            </tr>
          {% endfor %}
        </tbody>
@@ -35,5 +54,7 @@
       <p>You have no products listed for sale.</p>
     {% endif %}
   </div>
+  </div>
+ 
 </div>
 {% endblock %}

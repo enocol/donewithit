@@ -45,7 +45,7 @@
             </form>
               {% else %}
                <p class="text-muted fs-7">Please log in to add items to your cart.</p>
-               <a href="{}" class="btn btn-primary mt-4">Login</a>
+               <a href="{% url 'account_login' %}" class="btn btn-primary mt-4">Login</a>
            {% endif %}
 
             <a href="{% url 'product_list' %}" class="btn btn-primary mt-4">Back to Products</a>
