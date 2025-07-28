@@ -2,7 +2,7 @@
 
 const stripePublicKey = JSON.parse(document.getElementById('id_stripe-public-key').textContent);
 const stripeClientSecret = JSON.parse(document.getElementById('id_stripe-client-secret').textContent);
-const stripe = stripe(stripePublicKey);
+const stripe = Stripe(stripePublicKey);
 const elements = stripe.elements(); 
 const style = {
   base: {
@@ -38,7 +38,7 @@ cardElement.on('change', function(event) {
 });
 
 
-form = document.getElementById('checkout-form');
+const form = document.getElementById('checkout-form');
 form.addEventListener('submit', function(event) {
   event.preventDefault();
   const displayError = document.getElementById('card-errors');
