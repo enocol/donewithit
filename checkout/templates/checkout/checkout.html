@@ -71,8 +71,8 @@
 {{ stripe_public_key|json_script:"id_stripe-public-key" }}
 {{ stripe_client_secret|json_script:"id_stripe-client-secret" }}
 <script>
-  const stripePublicKey = JSON.parse(document.getElementById('id_stripe-public-key').textContent);
-const stripeClientSecret = JSON.parse(document.getElementById('id_stripe-client-secret').textContent);
+const stripePublicKey = document.getElementById('id_stripe-public-key').textContent.slice(1, -1);
+const stripeClientSecret = document.getElementById('id_stripe-client-secret').textContent.slice(1, -1);
 const stripe = Stripe(stripePublicKey);
 const elements = stripe.elements(); 
 const style = {
