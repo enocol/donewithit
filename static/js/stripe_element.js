@@ -2,7 +2,7 @@
 
 const stripePublicKey = JSON.parse(document.getElementById('id_stripe-public-key').textContent);
 const stripeClientSecret = JSON.parse(document.getElementById('id_stripe-client-secret').textContent);
-const stripe = Stripe(stripePublicKey);
+const stripe = stripe(stripePublicKey);
 const elements = stripe.elements(); 
 const style = {
   base: {
