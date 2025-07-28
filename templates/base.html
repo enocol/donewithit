@@ -25,6 +25,12 @@
     {% block corecss %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
     {% endblock corecss %}
+    {% block extracss %}
+    {% endblock extracss %}
+    {% block extra %}
+      <meta name="description" content="MarketCorner - Your one-stop shop for all things marketplace." />
+      <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}" />
+    {% endblock extra %}
   </head>
   <body>
     <header class="z-3">
@@ -41,5 +47,7 @@
     ></script>
     <script src="{% static 'js/scripts.js' %}"></script>
     {% endblock corejs %}
+    {% block scripts %}
+    {% endblock scripts %}
   </body>
 </html>

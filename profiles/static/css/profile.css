@@ -1,0 +1,13 @@
+.container {
+    height: 100vh;
+}
+
+
+.account-info, .product-management {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    border: 1px solid #dee2e6;
+    height: 100vh;
+}

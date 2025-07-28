@@ -12,13 +12,15 @@
                {% if user.is_authenticated %}
               
                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'product_create' %}">Sell a Product</a>
+                    <a class="nav-link" href="{% url 'product_create' %}"><span><i class="fa-solid fa-plus"></i></span> Post an Ad</a>
                 </li>
+                {% if user.is_authenticated %}
                 <li class="nav-item">
-                     <a class="nav-link" href="{% url 'profile' %}">{% if user.is_authenticated %}{{user.username}}'s Profile{% endif %}</a>
+                     <a class="nav-link" href="{% url 'profile' %}"><i class="fa-solid fa-user"></i></a>
                 </li>
+                {% endif %}
                  <li class="nav-item">
-                   <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+                   <a class="nav-link" href="{% url 'account_logout' %}"><i class="fa-solid fa-right-from-bracket"></i></a>
                </li>
                 {% else %}
                    
@@ -35,7 +37,7 @@
         </div>
         <div class="d-flex justify-content-end">
            {% if cart_total %}
-           <a href="{% url 'shopping_cart' %}" class="btn btn-primary">
+           <a href="{% url 'shopping_cart' %}" class="btn btn-primary ">
                <i class="fas fa-shopping-cart"></i> {{ cart_total|floatformat:2 }}
            </a>
               {% else %}

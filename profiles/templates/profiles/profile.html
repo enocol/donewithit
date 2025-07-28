@@ -1,4 +1,9 @@
-{% extends 'base.html' %} {% load static %} {% block content %}
+{% extends 'base.html' %} {% load static %}
+{% block extracss %}
+{{block.super}}
+  <link rel="stylesheet" href="{% static 'css/profile.css' %}" />
+{% endblock extracss %}
+{% block content %}
 
 <div class="container mt-4 mb-2">
     <div class="row mb-4">
@@ -15,12 +20,12 @@
     </div>
 
   <div class="row">
-    <div class="col-6">
+    <div class="col-12 col-sm-12 col-md-6 account-info">
       <h1>Account Information</h1>
       <p>Email: {% if user.email %}{{ user.email }}{% else %}Not provided{% endif %}</p>
       <p>Joined: {% if user.date_joined %}{{ user.date_joined }}{% else %}Not provided{% endif %}</p>
     </div>
-     <div class="col-6">
+     <div class="col-12 col-sm-12 col-md-6 product-management">
     <h1>Manage your Products</h1>
    
     {% if products %}

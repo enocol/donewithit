@@ -12,16 +12,27 @@ a {
     text-decoration: none;
 }
 
+ul li:hover {
+    background-color: #e9ecef;
+    border-bottom: 2px solid #007bff;
+}
+
 .card-body {
     max-height: 300px;
     overflow: hidden;
     text-overflow: ellipsis;
-    padding: 10px;
+    padding: 5px;
 }
-.red-text {
-    font-size: 14px;
-    color: red;
-    font-weight: 700;
+
+.card-body .text-muted {
+    font-size: xx-small;
+}
+
+
+.black-text {
+    font-size: 16px;
+    color: black;
+    font-weight: 400;
 
 }
 
