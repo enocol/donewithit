@@ -23,15 +23,16 @@
        
     </div>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-12 col-md-6">
             <img
           src="{{ product.main_image.url }}"
           style="height: 350px; width: 100%; object-fit: contain;"
           class="card-img-top"
+          id="main-product-image"
           alt="{{ product.product_name }}"
         />
         </div>
-        <div class="col-md-6">
+        <div class="col-12 col-md-6">
             <h2>{{ product.product_name }}</h2>
             <p>{{ product.description }}</p>
             <p>Price: ${{ product.price }}</p>
@@ -53,6 +54,33 @@
          
     </div>
 
+    <div class="row">
+      {% if images %}
+        <div class="col-12 mt-4">
+            <h3>Additional Images</h3>
+            
+            <div class="row">
+                {% for image in images %}
+                <div class="col-sm-12 col-md-2 mb-3">
+                    <img src="{{ image.image.url }}" class="img-fluid img-thumbnail"  style="height: 150px; width: 100%; object-fit: contain; cursor: pointer;" alt="{{ product.product_name }}">
+                </div>
+              
+                {% endfor %}
+                  <div class="col-sm-12 col-md-2">
+                    <img src="{{ product.main_image.url }}" class="img-fluid img-thumbnail"  style="height: 150px; width: 100%; object-fit: contain; cursor: pointer;" alt="{{ product.product_name }}">
+                </div>
+            </div>
+        </div>
+      {% else %}
+        <p class="text-muted">No additional images available for this product.</p>
+        {% endif %}
+    </div>
+
 </div>
     
 {% endblock %}
+
+{% block scripts %}
+<script src="{% static 'products/js/scripts.js' %}"></script>
+{% endblock %}
+

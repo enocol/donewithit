@@ -1,6 +1,5 @@
 {% extends 'base.html' %} {% load static %}
- 
-  
+
   
   {% block content %}
 <div class="container">
@@ -41,7 +40,7 @@
       <button class="scroll-btn right" onclick="scrollCategories(200)">&#8250;</button>
     </div>
 
-  <div class="row">
+  <div class="row ">
     {% for product in products %}
     <div class="col-6 col-sm-6 col-md-2 mb-4">
      <a href="{% url 'product_detail' product.id %}">
@@ -54,9 +53,9 @@
         />
         <div class="card-body p-2">
           <h5 class="fs-6">{{ product.product_name }}</h5>
-          <p class="red-text">£{{ product.price }}</p>
-          <p class="text-muted fs-7">{{ product.seller }}</p>
-          <p class="text-muted fs-7">{{ product.created_at|date:"d M Y" }}</p>
+          <p class="black-text mb-0">£{{ product.price }}</p>
+          <p class="text-muted fs-7 mb-0"><span>Seller: </span>{{ product.seller }}</p>
+          <p class="text-muted fs-7 mb-0 "><span>Listed: </span>{{ product.created_at|timesince }} ago</p>
         </div>
       </div>
      </a>

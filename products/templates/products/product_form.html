@@ -17,12 +17,15 @@ Create Product
             {{ form|crispy }}
         </div>
         <div class="col-md-6">
-           
+         
+        <div class="col-md-6">
+          {{ formset|crispy }}
+
         </div>
     </div>
 </div>
 
-  <button type="submit">Create</button>
+  <button class="btn btn-primary" type="submit">Post Ad</button>
 </form>
 </div>
 {% endblock %}
