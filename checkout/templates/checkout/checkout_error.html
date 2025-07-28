@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="alert alert-danger text-center shadow rounded" role="alert">
+        <h2 class="mb-3"><i class="bi bi-exclamation-triangle-fill"></i> Payment Error</h2>
+        <p class="lead">We're sorry, but an error occurred during checkout.</p>
+        <p class="text-muted">{{ error }}</p>
+        <a href="{% url 'checkout' %}" class="btn btn-primary mt-3">Try Again</a>
+    </div>
+</div>
+{% endblock %}
