@@ -45,7 +45,7 @@
              <td>{{ product.price }}</td>
              <td><img src="{{ product.main_image.url }}" alt="{{ product.product_name }}" style="width: 100px; height: auto;"></td>
              <td>
-               <a href="" class="btn btn-primary">Edit</a>
+               <a href="{% url 'product_edit' product.id %}" class="btn btn-primary">Edit</a>
                <form action="" method="post" style="display:inline;">
                  {% csrf_token %}
                  <button type="submit" class="btn btn-danger">Delete</button>
