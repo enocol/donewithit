@@ -35,16 +35,28 @@
       {% for f in formset.forms %}
         <div class="col-md-6">
           <div class="border rounded p-3 h-100">
+            {# Include hidden fields like id/product so existing forms validate #}
+            {% for hidden in f.hidden_fields %}
+              {{ hidden }}
+            {% endfor %}
+
+            {{ f.non_field_errors }}
+
             {% if f.instance.pk and f.instance.image %}
-              <img class="thumb mb-2" src="{{ f.instance.image.url }}" alt="Image">
+              <img class="thumb mb-2" src="{{ f.instance.image.url }}" alt="Image" style="max-width: 100px; height: auto;"/>
             {% endif %}
+
             <div class="mb-2">
               <label class="form-label" for="{{ f.image.id_for_label }}">Image</label>
               {{ f.image }}
               {% for error in f.image.errors %}<div class="text-danger small">{{ error }}</div>{% endfor %}
             </div>
+
             {% if formset.can_delete %}
-              <div class="form-check">{{ f.DELETE }} <label class="form-check-label" for="{{ f.DELETE.id_for_label }}">Delete this image</label></div>
+              <div class="form-check">
+                {{ f.DELETE }}
+                <label class="form-check-label" for="{{ f.DELETE.id_for_label }}">Delete this image</label>
+              </div>
             {% endif %}
           </div>
         </div>
@@ -72,34 +84,33 @@
     </div>
   </form>
 
+  <script>
+  (function(){
+    const container = document.getElementById('images-formset');
+    const addBtn = document.getElementById('add-image');
+    const tmpl = document.getElementById('empty-form').content;
+    const totalInput = document.querySelector('[name="{{ formset.prefix }}-TOTAL_FORMS"]');
+    const maxInput = document.querySelector('[name="{{ formset.prefix }}-MAX_NUM_FORMS"]');
 
-<script>
-(function(){
-  const container = document.getElementById('images-formset');
-  const addBtn = document.getElementById('add-image');
-  const tmpl = document.getElementById('empty-form').content;
-  const totalInput = document.querySelector('[name="{{ formset.prefix }}-TOTAL_FORMS"]');
-  const maxInput = document.querySelector('[name="{{ formset.prefix }}-MAX_NUM_FORMS"]');
+    addBtn.addEventListener('click', () => {
+      const total = parseInt(totalInput.value, 10);
+      const max = parseInt((maxInput && maxInput.value) || '1000', 10);
+      if (total >= max) { alert('Maximum number of images reached.'); return; }
 
-  addBtn.addEventListener('click', () => {
-    const total = parseInt(totalInput.value, 10);
-    const max = parseInt((maxInput && maxInput.value) || '1000', 10);
-    if (total >= max) { alert('Maximum number of images reached.'); return; }
-
-    const clone = document.importNode(tmpl, true);
-    // Fix __prefix__ in new field names/ids
-    clone.querySelectorAll('[name],[id],[for]').forEach(el => {
-      ['name','id','for'].forEach(attr => {
-        if (el.hasAttribute(attr)) {
-          el.setAttribute(attr, el.getAttribute(attr).replace('__prefix__', '{{ formset.prefix }}-' + total));
-        }
+      const clone = document.importNode(tmpl, true);
+      // Fix __prefix__ in new field names/ids
+      clone.querySelectorAll('[name],[id],[for]').forEach(el => {
+        ['name','id','for'].forEach(attr => {
+          if (el.hasAttribute(attr)) {
+            el.setAttribute(attr, el.getAttribute(attr).replace('__prefix__', '{{ formset.prefix }}-' + total));
+          }
+        });
       });
-    });
 
-    container.appendChild(clone);
-    totalInput.value = total + 1;
-  });
-})();
-</script>
+      container.appendChild(clone);
+      totalInput.value = total + 1;
+    });
+  })();
+  </script>
 </div>
 {% endblock %}

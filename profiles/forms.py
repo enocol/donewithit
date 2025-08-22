@@ -31,13 +31,14 @@ class MoreProductImageForm(forms.ModelForm):
     class Meta:
         model = MoreProductImage
         fields = ['image']
+        
 
 MoreProductImageFormSet = inlineformset_factory(
     Product,
     MoreProductImage,
     form=MoreProductImageForm,
     fields=['image'],
-    extra=2,          # show 2 empty rows by default
+    extra=1,          # show 1 empty row by default
     max_num=5,        # total cap
     validate_max=True,
     can_delete=True,  # allow removing existing images
