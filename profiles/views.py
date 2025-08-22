@@ -66,3 +66,13 @@ def product_edit(request, product_id):
        "product": product,
    })
 
+def product_delete(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+
+    if request.method == "POST":
+        product.delete()
+        messages.success(request, "Product deleted successfully.")
+        return redirect('profile')  # Redirect to profile or another appropriate page
+
+    return render(request, 'profiles/confirm_delete.html', {'product': product})
+
