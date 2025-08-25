@@ -1,10 +1,10 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
 
-<div class="container mt-5">
+<div class="container bg-success text-white  p-3 my-3">
   <h1>Your Shopping Cart</h1>
-  <div class="row">
+  <div class="row mt-5">
     {% if cart_items %}
-    <div class="col-6">
+    <div class="col-sm-12 col-md-6">
       <p>You have {{ cart_items|length }} items in your cart.</p>
       <table class="table table-striped">
         <thead>
@@ -34,17 +34,17 @@
       </table>
      <div class="container">
       <div class="row">
-        <div class="col-12 col-md-6">
+        <div class="col-6">
           <a href="{% url 'checkout' %}" class="btn btn-primary mb-3">Proceed to Checkout</a>
         </div>
-        <div class="col-12 col-md-6">
+        <div class="col-6">
           <a href="{% url 'product_list' %}" class="btn btn-secondary">Continue Shopping</a>
         </div>
       </div>
      </div>
     </div>
 
-    <div class="col-6">
+    <div class="col-sm-12 col-md-6">
       <h2>Total: £{{ cart_total | floatformat:2 }}</h2>
        <p>Delivery Charge: £{{ delivery_charge | floatformat:2 }}</p>
       <hr>

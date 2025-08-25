@@ -5,10 +5,10 @@
 {% endblock extracss %}
 {% block content %}
 
-<div class="container mt-4 mb-2">
+<div class="container mt-4 p-3 bg-success text-white">
     <div class="row mb-4">
         {% if messages %}
-        <div class="col-md-12">
+        <div class="col-sm-12">
             {% for message in messages %}
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
                 {{ message }}
@@ -20,24 +20,45 @@
     </div>
 
   <div class="row">
-    <div class="col-12 col-sm-12 col-md-6 account-info">
-      <h1>Account Information</h1>
-      <p>Email: {% if user.email %}{{ user.email }}{% else %}Not provided{% endif %}</p>
-      <p>Joined: {% if user.date_joined %}{{ user.date_joined }}{% else %}Not provided{% endif %}</p>
+    <div class="col-sm-12 col-md-6 border">
+      <h2>Account Information</h2>
+      <table class="table">
+        <tr>
+          <th>Username:</th>
+          <td>{% if user.username %}{{ user.username }}{% else %}Not provided{% endif %}</td>
+        </tr>
+        <tr>
+          <th>Email:</th>
+          <td>{% if user.email %}{{ user.email }}{% else %}Not provided{% endif %}</td>
+        </tr>
+        <tr>
+          <th>First Name:</th>
+          <td>{% if user.first_name %}{{ user.first_name }}{% else %}Not provided{% endif %}</td>
+        </tr>
+        <tr>
+          <th>Last Name:</th>
+          <td>{% if user.last_name %}{{ user.last_name }}{% else %}Not provided{% endif %}</td>
+        </tr>
+        <tr>
+          <th>Date Joined:</th>
+          <td>{{ user.date_joined|date:"F j, Y, g:i a" }}</td>
+      </table>
     </div>
-     <div class="col-12 col-sm-12 col-md-6 product-management">
-    <h1>Manage your Products</h1>
+
+
+     <div class="col-sm-12 col-md-6 border">
+        <h2>Manage your Products</h2>
    
-    {% if products %}
-     <table class="table table-striped">
-       <thead>
-         <tr>
-           <th>Product Name</th>
-           <th>Price</th>
-           <th>Image</th>
-          <th>Actions</th>
-         </tr>
-       </thead>
+        {% if products %}
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Product Name</th>
+              <th>Price</th>
+              <th>Image</th>
+              <th>Actions</th>
+            </tr>
+           </thead>
        <tbody>
          {% for product in products %}
            <tr>
@@ -54,11 +75,11 @@
            </tr>
          {% endfor %}
        </tbody>
-     </table>
-    {% else %}
-      <p>You have no products listed for sale.</p>
-    {% endif %}
-  </div>
+      </table>
+        {% else %}
+          <p>You have no products listed for sale.</p>
+        {% endif %}
+    </div>
   </div>
  
 </div>

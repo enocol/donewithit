@@ -9,12 +9,20 @@
     scroll-behavior: smooth;
     list-style: none;
 }
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+}
 header {
     background-color: #343a40;
 }
 
 h1{
-    color: #e9ecef;
+    color: #fff;
+   
     font-size: 24px;
     font-weight: 600;
     padding: 10px 0;
@@ -51,12 +59,7 @@ ul li a:hover {
 }
 
 
-.footer {
-    position : absolute;
-    bottom : 0;
-    width : 100%;
-    height : 60px; /* Height of the footer */
-}
+
 
 .black-text {
     font-size: 16px;
@@ -166,11 +169,20 @@ ul a {
     text-transform: uppercase;
 }
 
+
 @media screen and (max-width: 768px) {
    .desktop-header {
         display: none;
     }
-    
+    .mobile-header {
+        display: block;
+    }
+
+    body {
+        min-height: 100vh;
+        justify-content: flex-start;
+    }
+
 }
 
 @media screen and (min-width: 769px) {
@@ -178,6 +190,9 @@ ul a {
         display: none;
     }
     
+    .desktop-header {
+        display: block;
+    }
 }
 
 
