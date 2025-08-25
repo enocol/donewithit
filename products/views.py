@@ -26,7 +26,8 @@ def product_list(request):
 
     if category_filter:
         products = products.filter(category__name=category_filter)
-       
+    else:
+        products = Product.objects.all()
 
     context = {
         'products': products,
