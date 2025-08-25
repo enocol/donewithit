@@ -38,11 +38,11 @@
         <div class="d-flex justify-content-end">
            {% if cart_total %}
            <a href="{% url 'shopping_cart' %}" class="btn btn-primary ">
-               <i class="fas fa-shopping-cart"></i> {{ cart_total|floatformat:2 }}
+               <i class="fas fa-shopping-cart"></i> £{{ cart_total|floatformat:2 }}
            </a>
               {% else %}
            <a href="{% url 'shopping_cart' %}" class="btn btn-primary">
-               <i class="fas fa-shopping-cart"></i> (0.00)
+               <i class="fas fa-shopping-cart"></i> £(0.00)
            </a>
            {% endif %}
         </div>

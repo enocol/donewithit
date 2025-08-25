@@ -33,9 +33,11 @@
       <div class="category-wrapper mt-2 mb-4">
        <button class="scroll-btn left" onclick="scrollCategories(-200)">&#8249;</button>
       <div class="category-container">
+        <a href="{% url 'product_list' %}"><div class="category">All Products</div></a>
         {% for c in categories %}
-        <a href="{% url 'product_list' %}?category={{ c.name }}"><div class="category">{{ c.get_display_name }}</div></a>
+        <a href="{% url 'product_list' %}?category={{ c.name }}"><div class="category">{{ c.get_display_name }} </div></a>
         {% endfor %}
+       
       </div>
       <button class="scroll-btn right" onclick="scrollCategories(200)">&#8250;</button>
     </div>

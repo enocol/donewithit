@@ -11,8 +11,12 @@ class ProductForm(forms.ModelForm):
         model = Product
         fields = ['product_name', 'description', 'price', 'main_image', 'category']
         widgets = {
-            'description': forms.Textarea(attrs={'rows': 4, 'cols': 40}),
-            'price': forms.NumberInput(attrs={'min': 0, 'step': 0.01}),
+            'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 4, 'cols': 40}),
+            'price': forms.NumberInput(attrs={'class': 'form-control', 'min': 0, 'step': 0.01}),
+            'product_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'price': forms.NumberInput(attrs={'class': 'form-control', 'min': 0, 'step': 0.01}),
+            'main_image': forms.ClearableFileInput(attrs={'class': 'form-control'}),
+            'category': forms.Select(attrs={'class': 'form-select'}),
         }
 
     def __init__(self, *args, **kwargs):

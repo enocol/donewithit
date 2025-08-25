@@ -45,6 +45,7 @@
             <th>Item</th>
             <th>Product</th>
             <th>Price</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -52,9 +53,11 @@
           <tr>
             <td><img src="{{ item.main_image }}" style="width: 100px;" alt="{{ item.product_name }}"></td>
             <td>{{ item.product_name }}</td>
-            <td>{{ item.price | floatformat:2 }}</td>
+            <td>£{{ item.price | floatformat:2 }}</td>
+           
           </tr>
           {% endfor %}
+         
         </tbody>
       </table>
 

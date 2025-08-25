@@ -15,16 +15,37 @@
     {% csrf_token %}
 
     <!-- Product fields -->
-    <div class="row g-3">
-      {% for field in form %}
-        <div class="col-12">
-          <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
-          {{ field }}
-          {% if field.help_text %}<div class="form-text">{{ field.help_text }}</div>{% endif %}
-          {% for error in field.errors %}<div class="text-danger small">{{ error }}</div>{% endfor %}
+<div class="row g-3">
+  {% for field in form %}
+    <div class="row mb-3 align-items-center">
+      <label class="col-sm-3 col-form-label" for="{{ field.id_for_label }}">
+        {{ field.label }}
+      </label>
+      <div class="col-sm-9">
+         {% if field.name == "main_image" and form.instance.main_image %}
+        <div class="mt-2">
+          <img src="{{ form.instance.main_image.url }}" 
+               alt="Current image" 
+               class="img-thumbnail" 
+               style="max-height: 120px;">
         </div>
-      {% endfor %}
+      {% endif %}
+        {{ field }}
+        {# Show preview for main_image if editing an existing product with an image #}
+     
+
+        {% if field.help_text %}
+          <div class="form-text">{{ field.help_text }}</div>
+        {% endif %}
+
+        {% for error in field.errors %}
+          <div class="text-danger small">{{ error }}</div>
+        {% endfor %}
+      </div>
     </div>
+  {% endfor %}
+</div>
+
 
     <hr class="my-4"/>
 

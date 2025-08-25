@@ -51,6 +51,19 @@
 
             <a href="{% url 'product_list' %}" class="btn btn-primary mt-4">Back to Products</a>
         </div>
+        <div>
+                {% if request.user.is_superuser %}
+  <a href="{% url 'product_edit' product.id %}" class="btn btn-warning mt-4">Edit Product</a>
+  <form action="{% url 'product_delete' product.id %}" method="post" style="display:inline;">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger mt-4"
+            onclick="return confirm('Are you sure you want to delete this product?');">
+      Delete Product
+    </button>
+  </form>
+{% endif %}
+
+        </div>
          
     </div>
 

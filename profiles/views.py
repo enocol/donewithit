@@ -6,10 +6,12 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse
 from django.contrib import messages
 from django.db import transaction
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
 
+@login_required
 def profile(request):
 
     """
@@ -24,7 +26,7 @@ def profile(request):
     return render(request, 'profiles/profile.html', context)
 
 
-
+@login_required
 @transaction.atomic
 def product_edit(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
@@ -65,7 +67,7 @@ def product_edit(request, product_id):
        "formset": formset,
        "product": product,
    })
-
+@login_required
 def product_delete(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
 

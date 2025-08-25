@@ -5,7 +5,24 @@
     font-family: Arial, sans-serif;  
 }
 header {
-    background-color: #f8f9fa;
+    background-color: #343a40;
+    
+}
+
+h1{
+    color: #e9ecef;
+    font-size: 24px;
+    font-weight: 600;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.textinput, .textarea, .select, .form-control {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 3px solid gray;
+    border-radius: 4px;
 }
 
 a {
@@ -34,6 +51,13 @@ ul li:hover {
     color: black;
     font-weight: 400;
 
+}
+
+#id_product_name, #id_price, #id_description, #id_category {
+    border: 3px solid gray;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
 }
 
 .orange-border {
@@ -66,11 +90,11 @@ ul li:hover {
 .category-container a {
     flex: 0 0 auto;
     padding: 10px 20px;
-    background-color: #e9ecef;
+    background-color: #343a40;
     border-radius: 5px;
     margin-right: 10px;
     font-weight: bold;
-    color: #343a40;
+    color: #e9ecef;
     transition: background-color 0.3s ease;
     cursor: pointer;
 }
