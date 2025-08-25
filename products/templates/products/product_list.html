@@ -59,10 +59,10 @@
           alt="{{ product.product_name }}"
         />
         <div class="card-body p-2">
-          <h5 class="fs-6">{{ product.product_name }}</h5>
-          <p class="black-text mb-0">£{{ product.price }}</p>
-          <p class="text-muted fs-7 mb-0"><span>Seller: </span>{{ product.seller }}</p>
-          <p class="text-muted fs-7 mb-0 "><span>Listed: </span>{{ product.created_at|timesince }} ago</p>
+          <h5 class="fs-6 uppercase gray-text">{{ product.product_name }}</h5>
+          <p class="black-text fw-bold mb-0">£{{ product.price }}</p>
+          <p class="text-muted fs-7 gray-text mb-0"><span>Author: </span>{{ product.seller }}</p>
+          <p class="fs-7 gray-text mb-0"><span>Listed: </span>{{ product.created_at|timesince }} ago</p>
         </div>
       </div>
      </a>
