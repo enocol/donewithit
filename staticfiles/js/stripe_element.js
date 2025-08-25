@@ -38,7 +38,7 @@ cardElement.on('change', function(event) {
 });
 
 
-form = document.getElementById('checkout-form');
+const form = document.getElementById('checkout-form');
 form.addEventListener('submit', function(event) {
   event.preventDefault();
   const displayError = document.getElementById('card-errors');
