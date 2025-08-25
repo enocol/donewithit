@@ -22,8 +22,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('products.urls')),  # Include the products app URLs
-    path('accounts/', include('allauth.urls')),  # Include allauth URLs for authentication
     path('', include('shoppingCart.urls')),  # Include the shopping cart app URLs
     path('', include('checkout.urls')),  # Include the checkout app URLs
     path('', include('profiles.urls')),  # Include the profiles app URLs
-]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    path("accounts/", include("allauth.urls")),
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

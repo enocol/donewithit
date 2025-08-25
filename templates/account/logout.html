@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Sign Out" %}{% endblock head_title %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
+      <div class="card shadow-sm border-0">
+        <div class="card-body text-center p-4">
+          <h1 class="h4 mb-3 text-danger">{% trans "Sign Out" %}</h1>
+          <p class="text-muted mb-4">{% trans "Are you sure you want to sign out?" %}</p>
+
+          <form method="post" action="{% url 'account_logout' %}">
+            {% csrf_token %}
+            {{ redirect_field }}
+            
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+              <button type="submit" class="btn btn-danger px-4">
+                {% trans "Sign Out" %}
+              </button>
+              <a href="{{ request.META.HTTP_REFERER|default:'/' }}" class="btn btn-outline-secondary px-4">
+                {% trans "Cancel" %}
+              </a>
+            </div>
+          </form>
+        </div>
+      </div>
+      <p class="text-center mt-3 text-muted small">
+        {% trans "You can always sign back in later." %}
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+
