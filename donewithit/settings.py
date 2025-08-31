@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'home',
     'shoppingCart',  # Custom app for shopping cart functionality
     'checkout',  # Custom app for checkout process
     'profiles',  # Custom app for user profiles

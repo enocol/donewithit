@@ -74,7 +74,7 @@ def product_delete(request, product_id):
     if request.method == "POST":
         product.delete()
         messages.success(request, "Product deleted successfully.")
-        return redirect('profile')  # Redirect to profile or another appropriate page
+        return redirect('product_list')  # Redirect to product list or another appropriate page
 
     return render(request, 'profiles/confirm_delete.html', {'product': product})
 
