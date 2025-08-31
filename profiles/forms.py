@@ -8,6 +8,7 @@ class ProductEditForm(forms.ModelForm):
         required=True,
         label="Product Category",
         empty_label="Select a category",
+        
     )
 
     class Meta:
@@ -26,6 +27,9 @@ class ProductEditForm(forms.ModelForm):
         self.fields['main_image'].label = "Main Image"
         self.fields['main_image'].help_text = "Upload to replace the current main image (optional)."
         self.fields['main_image'].widget.attrs.update({'accept': 'image/*'})
+        self.fields['category'].choices = [(cat.id, cat.get_display_name()) for cat in Category.objects.all()]
+        
+        
 
 class MoreProductImageForm(forms.ModelForm):
     class Meta:

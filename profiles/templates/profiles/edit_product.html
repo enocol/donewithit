@@ -30,9 +30,14 @@
                style="max-height: 120px;">
         </div>
       {% endif %}
-        {{ field }}
-        {# Show preview for main_image if editing an existing product with an image #}
-     
+      {# Show category display name if editing an existing product #}
+      {% if field.name == "category" %}
+        <div class="mt-2">
+          {{ form.instance.category.get_display_name }}
+        </div>
+      {% endif %}
+
+       {{ field }}   
 
         {% if field.help_text %}
           <div class="form-text">{{ field.help_text }}</div>

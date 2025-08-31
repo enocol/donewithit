@@ -85,13 +85,15 @@ ul li a:hover {
 
 
 .category-wrapper {
-  position: relative;
+  position: sticky;
+  top: 80px; /* Adjust based on your header height */
   display: flex;
   align-items: center;
   width: 100%;
   overflow: hidden;
   margin: 0 auto;
   padding: 0 20px;
+  z-index: 1000;
 }
 
 .category-container {
@@ -182,6 +184,12 @@ ul a {
         min-height: 100vh;
         justify-content: flex-start;
     }
+
+    .category-wrapper {
+    position: relative;
+    z-index: 1;
+
+}
 
 }
 
