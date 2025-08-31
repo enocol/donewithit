@@ -9,7 +9,7 @@ from django.db import models
 class Category(models.Model):
     CATEGORY_TYPES = [
         ('None', 'None'),
-        ('BOOK', 'Book'),
+        ('BOOKs', 'Books'),
         ('CLOTH', 'Clothing'),
         ('ELEC', 'Electronics'),
         ('FURN', 'Furniture'),

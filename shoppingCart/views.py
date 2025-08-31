@@ -38,7 +38,7 @@ def add_to_cart(request, product_id):
 
         return redirect('product_detail', product_id=product.id)
 
-    # In case of GET request (optional, fallback)
+    
     return render(request, 'products/product_detail.html', {'product': product})
 
 @login_required

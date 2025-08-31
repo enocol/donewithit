@@ -17,7 +17,7 @@ def profile(request):
     """
     Render the user profile page.
     """
-    products = Product.objects.filter(seller=request.user)  # Assuming you want to show products created by the user
+    products = Product.objects.filter(seller=request.user)  
    
     context = {
         'products': products,
@@ -45,8 +45,7 @@ def product_edit(request, product_id):
             messages.success(request, "Product updated successfully.")
             return redirect(reverse("product_detail", args=[product.pk]))
 
-        # Only run these on POST (so no UnboundLocalError on GET)
-        # Helpful diagnostics while you debug:
+       
         if not form_ok:
             print("FORM ERRORS:", form.errors.as_json())
             messages.error(request, f"Product form error(s): {form.errors.as_text()}")
@@ -58,7 +57,6 @@ def product_edit(request, product_id):
             messages.error(request, "Please fix the errors below.")
 
     else:
-        # GET request — just render blank/filled forms. Do NOT touch form_ok/formset_ok here.
         form = ProductEditForm(instance=product)
         formset = MoreProductImageFormSet(instance=product, prefix="images")
 
@@ -74,7 +72,7 @@ def product_delete(request, product_id):
     if request.method == "POST":
         product.delete()
         messages.success(request, "Product deleted successfully.")
-        return redirect('product_list')  # Redirect to product list or another appropriate page
+        return redirect('product_list')  
 
     return render(request, 'profiles/confirm_delete.html', {'product': product})
 

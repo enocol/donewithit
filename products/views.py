@@ -7,6 +7,7 @@ from .forms import MoreProductImageFormSet, ProductForm
 from django.contrib.auth.decorators import login_required
 
 def product_list(request):
+    '''Product listing view'''
     categories = Category.objects.all()  
     search_query = request.GET.get('search', None)
     category_filter = request.GET.get('category', None)
@@ -33,10 +34,13 @@ def product_list(request):
 
 
 def product_detail(request, product_id):
+    '''Product detail view'''
     product = get_object_or_404(Product, id=product_id)
+    categories = Category.objects.all()  
+
     if product.images.exists():
         images = product.images.all()
-    categories = Category.objects.all()  # Fetch all categories for the template
+    
     if not product:
         messages.error(request, "Product not found.")
         return render(request, 'products/product_list.html', {})
@@ -44,24 +48,25 @@ def product_detail(request, product_id):
     context = {
         'product': product,
         'categories': categories,
-        'images': images if 'images' in locals() else None,  # Check if images exist
+        'images': images if 'images' in locals() else None, 
     }
     return render(request, 'products/product_detail.html', context)
 
 @login_required
 def product_create(request):
+    '''Product creation view'''
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
         formset = MoreProductImageFormSet(request.POST, request.FILES)
         if form.is_valid():
             product = form.save(commit=False)
-            product.seller = request.user  # Assuming you want to associate the product with the logged-in user
+            product.seller = request.user  
             formset = MoreProductImageFormSet(request.POST, request.FILES, instance=product)
             if formset.is_valid():
                 product.save()
                 formset.save()
                 messages.success(request, "Product created successfully.")
-                return redirect('product_list')  # Redirect to the product list after creation
+                return redirect('product_list')
     else:
         form = ProductForm()
         formset = MoreProductImageFormSet()
