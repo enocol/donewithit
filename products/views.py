@@ -12,6 +12,30 @@ def product_list(request):
     search_query = request.GET.get('search', None)
     category_filter = request.GET.get('category', None)
     products = Product.objects.all()
+
+    sort_option = request.GET.get('sort')
+
+    if sort_option == "price_asc":
+        products = products.order_by("price")
+    elif sort_option == "price_desc":
+        products = products.order_by("-price")
+    elif sort_option == "name_asc":
+        products = products.order_by("product_name")
+    elif sort_option == "name_desc":
+        products = products.order_by("-product_name")
+    elif sort_option == "date_asc":
+        products = products.order_by("created_at")
+    elif sort_option == "date_desc":
+        products = products.order_by("-created_at")
+
+    sort_options = [
+        ("price_asc", "Price: Low to High"),
+        ("price_desc", "Price: High to Low"),
+        ("name_asc", "Name: A to Z"),
+        ("name_desc", "Name: Z to A"),
+        ("date_asc", "Date: Oldest First"),
+        ("date_desc", "Date: Newest First"),
+    ]
     
 
     if search_query:
@@ -19,16 +43,22 @@ def product_list(request):
             Q(product_name__icontains=search_query) |
             Q(description__icontains=search_query)
         )
+    
+
     if not products.exists():
         messages.error(request, "No products found matching your search criteria.")
         products = Product.objects.all()
 
     if category_filter:
         products = products.filter(category__name=category_filter)
+        if not products.exists():
+            messages.error(request, f"No products found in category '{category_filter}'.")
+            products = Product.objects.all()
 
     context = {
         'products': products,
         'categories': categories,
+        'sort_options': sort_options,
     }
     return render(request, 'products/product_list.html', context)
 
