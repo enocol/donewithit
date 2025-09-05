@@ -52,7 +52,7 @@
             <a href="{% url 'product_list' %}" class="btn btn-primary mt-4">Back to Products</a>
         </div>
         <div>
-                {% if request.user.is_superuser %}
+                {% if request.user == product.seller or request.user.is_superuser %}
   <a href="{% url 'product_edit' product.id %}" class="btn btn-outline-warning mt-4">Edit Product</a>
   <form action="{% url 'product_delete' product.id %}" method="post" style="display:inline;">
     {% csrf_token %}

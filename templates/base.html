@@ -36,6 +36,16 @@
     {% endblock extra %}
   </head>
   <body>
+
+<!-- Loading Spinner Overlay -->
+<div id="loading-spinner" class="d-flex justify-content-center align-items-center">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+
+
+    <!-- Header -->
     <header class="z-3 fixed-top">
       {% include 'includes/deaktopheader.html' %}
       {% include 'includes/mobileHeader.html' %}

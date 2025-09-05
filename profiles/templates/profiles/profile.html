@@ -1,86 +1,107 @@
-{% extends 'base.html' %} {% load static %}
+{% extends 'base.html' %}
+{% load static %}
+
 {% block extracss %}
-{{block.super}}
-  <link rel="stylesheet" href="{% static 'css/profile.css' %}" />
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static 'css/profile.css' %}">
 {% endblock extracss %}
+
 {% block content %}
+<div class="container py-5">
 
-<div class="container mt-4 p-3 shadow-sm">
+  <!-- Flash messages -->
+  {% if messages %}
     <div class="row mb-4">
-        {% if messages %}
-        <div class="col-sm-12">
-            {% for message in messages %}
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                {{ message }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-            {% endfor %}
+      <div class="col-12">
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags|default:'info' }} alert-dismissible fade show shadow-sm rounded-3" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+
+  <div class="row g-4">
+    <!-- Profile Info Card -->
+    <div class="col-md-5">
+      <div class="card shadow-sm border-0 rounded-3 profile-card">
+        <div class="card-body p-4">
+          <h4 class="card-title mb-3">Account Information</h4>
+          <hr>
+          <ul class="list-unstyled">
+            <li class="mb-2"><strong>Username:</strong> {{ user.username|default:"Not provided" }}</li>
+            <li class="mb-2"><strong>Email:</strong> {{ user.email|default:"Not provided" }}</li>
+            <li class="mb-2"><strong>First Name:</strong> {{ user.first_name|default:"Not provided" }}</li>
+            <li class="mb-2"><strong>Last Name:</strong> {{ user.last_name|default:"Not provided" }}</li>
+            <li class="mb-2"><strong>Date Joined:</strong> {{ user.date_joined|date:"F j, Y, g:i a" }}</li>
+            <li><strong>Last Login:</strong> {{ user.last_login|date:"F j, Y, g:i a"|default:"—" }}</li>
+          </ul>
         </div>
-        {% endif %}
+      </div>
     </div>
 
-  <div class="row">
-    <div class="col-sm-12 col-md-6 ">
-      <h2>Account Information</h2>
-      <table class="table">
-        <tr>
-          <th>Username:</th>
-          <td>{% if user.username %}{{ user.username }}{% else %}Not provided{% endif %}</td>
-        </tr>
-        <tr>
-          <th>Email:</th>
-          <td>{% if user.email %}{{ user.email }}{% else %}Not provided{% endif %}</td>
-        </tr>
-        <tr>
-          <th>First Name:</th>
-          <td>{% if user.first_name %}{{ user.first_name }}{% else %}Not provided{% endif %}</td>
-        </tr>
-        <tr>
-          <th>Last Name:</th>
-          <td>{% if user.last_name %}{{ user.last_name }}{% else %}Not provided{% endif %}</td>
-        </tr>
-        <tr>
-          <th>Date Joined:</th>
-          <td>{{ user.date_joined|date:"F j, Y, g:i a" }}</td>
-      </table>
-    </div>
+    <!-- Manage Products Card -->
+    <div class="col-md-7">
+      <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-body p-4">
+          <h4 class="card-title mb-3">Manage Your Products</h4>
+          <hr>
 
-
-     <div class="col-sm-12 col-md-6">
-        <h2>Manage your Products</h2>
-   
-        {% if products %}
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>Product Name</th>
-              <th>Price</th>
-              <th>Image</th>
-              <th>Actions</th>
-            </tr>
-           </thead>
-       <tbody>
-         {% for product in products %}
-           <tr>
-             <td>{{ product.product_name }}</td>
-             <td>{{ product.price }}</td>
-             <td><img src="{{ product.main_image.url }}" alt="{{ product.product_name }}" style="width: 100px; height: auto;"></td>
-             <td>
-               <a href="{% url 'product_edit' product.id %}" class="btn btn-primary">Edit</a>
-               <form action="{% url 'product_delete' product.id %}" method="post" style="display:inline;">
-                 {% csrf_token %}
-                 <button type="submit" class="btn btn-danger">Delete</button>
-               </form>
-             </td>
-           </tr>
-         {% endfor %}
-       </tbody>
-      </table>
-        {% else %}
-          <p>You have no products listed for sale.</p>
-        {% endif %}
+          {% if products %}
+            <div class="table-responsive">
+              <table class="table align-middle table-hover">
+                <thead class="table-light">
+                  <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Image</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for product in products %}
+                    <tr>
+                      <td>
+                        <a href="{% url 'product_detail' product.id %}" class="fw-semibold text-decoration-none">
+                          {{ product.product_name }}
+                        </a>
+                      </td>
+                      <td>£{{ product.price|floatformat:2 }}</td>
+                      <td>
+                        {% if product.main_image %}
+                          <img src="{{ product.main_image.url }}" alt="{{ product.product_name }}" class="img-thumbnail" style="max-width:80px;">
+                        {% else %}
+                          <span class="text-muted">No image</span>
+                        {% endif %}
+                      </td>
+                      <td>
+                        {% if request.user == product.seller or request.user.is_superuser %}
+                          <a href="{% url 'product_edit' product.id %}" class="btn btn-sm btn-outline-primary me-1">Edit</a>
+                          <form action="{% url 'product_delete' product.id %}" method="post" class="d-inline">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-sm btn-outline-danger"
+                                    onclick="return confirm('Delete this product?');">
+                              Delete
+                            </button>
+                          </form>
+                        {% else %}
+                          <span class="badge bg-secondary">No actions</span>
+                        {% endif %}
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          {% else %}
+            <p class="text-muted fst-italic">You have no products listed for sale.</p>
+          {% endif %}
+        </div>
+      </div>
     </div>
   </div>
- 
 </div>
 {% endblock %}
+
