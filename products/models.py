@@ -8,8 +8,8 @@ from django.db import models
 
 class Category(models.Model):
     CATEGORY_TYPES = [
-        ('None', 'None'),
-        ('BOOKs', 'Books'),
+        
+        ('BOOKS', 'Books'),
         ('CLOTH', 'Clothing'),
         ('ELEC', 'Electronics'),
         ('FURN', 'Furniture'),
@@ -42,7 +42,6 @@ class Category(models.Model):
 
     def get_display_name(self):
           return dict(self.CATEGORY_TYPES).get(self.name, 'Unknown')
-
 
 class Product(models.Model):
     seller = models.ForeignKey(User, on_delete=models.CASCADE, related_name='products')

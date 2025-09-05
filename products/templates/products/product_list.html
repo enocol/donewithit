@@ -9,7 +9,7 @@
         ><div class="category">All Products</div></a
       >
       {% for c in categories %}
-      <a href="{% url 'product_list' %}?category={{ c.name }}"
+      <a href="{% url 'product_list' %}?category={{ c.name }}" class=""
         ><div class="category">{{ c.get_display_name }}</div></a
       >
       {% endfor %}
@@ -22,10 +22,10 @@
   <div class="container">
 
 
-<div class="col-6">
-  <p>Sort products:</p>
+<div class="d-flex justify-content-end mt-5 align-items-center gap-4">
+  <p class="m-0">Sort products:</p>
   <div class="dropdown">
-    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+    <button class="btn btn-outline-secondary w-100 dropdown-toggle" type="button" data-bs-toggle="dropdown">
       {% if request.GET.sort %}
         {% for value, label in sort_options %}
           {% if request.GET.sort == value %} {{ label }} {% endif %}
@@ -47,8 +47,7 @@
   </div>
 </div>
 
-
-
+<hr>
 
 
     <div class="row mb-4">

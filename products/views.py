@@ -43,11 +43,10 @@ def product_list(request):
             Q(product_name__icontains=search_query) |
             Q(description__icontains=search_query)
         )
-    
-
-    if not products.exists():
-        messages.error(request, "No products found matching your search criteria.")
-        products = Product.objects.all()
+        if not products.exists():
+            messages.error(request, f"No products found matching '{search_query}'.")
+            products = Product.objects.all()
+   
 
     if category_filter:
         products = products.filter(category__name=category_filter)
