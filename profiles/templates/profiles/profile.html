@@ -7,43 +7,49 @@
 {% endblock extracss %}
 
 {% block content %}
-<div class="container py-5">
+<div class="container pt-5">
 
   <!-- Flash messages -->
   {% if messages %}
-    <div class="row mb-4">
-      <div class="col-12">
-        {% for message in messages %}
-          <div class="alert alert-{{ message.tags|default:'info' }} alert-dismissible fade show shadow-sm rounded-3" role="alert">
-            {{ message }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <div class="row mb-4">
+          <div class="col-12">
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags|default:'info' }} alert-dismissible fade show shadow-sm rounded-3" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            {% endfor %}
           </div>
-        {% endfor %}
-      </div>
-    </div>
+        </div>
   {% endif %}
 
-  <div class="row g-4">
+  <div class="row">
     <!-- Profile Info Card -->
-    <div class="col-md-5">
-      <div class="card shadow-sm border-0 rounded-3 profile-card">
-        <div class="card-body p-4">
-          <h4 class="card-title mb-3">Account Information</h4>
-          <hr>
-          <ul class="list-unstyled">
-            <li class="mb-2"><strong>Username:</strong> {{ user.username|default:"Not provided" }}</li>
-            <li class="mb-2"><strong>Email:</strong> {{ user.email|default:"Not provided" }}</li>
-            <li class="mb-2"><strong>First Name:</strong> {{ user.first_name|default:"Not provided" }}</li>
-            <li class="mb-2"><strong>Last Name:</strong> {{ user.last_name|default:"Not provided" }}</li>
-            <li class="mb-2"><strong>Date Joined:</strong> {{ user.date_joined|date:"F j, Y, g:i a" }}</li>
-            <li><strong>Last Login:</strong> {{ user.last_login|date:"F j, Y, g:i a"|default:"—" }}</li>
-          </ul>
+        <div class="col-sm-12 col-md-4">
+          <div class="card shadow-sm border-0 rounded-3 profile-card">
+            <div class="card-body p-4">
+              <h4 class="card-title mb-3">Account Information</h4>
+              <hr>
+                  <div class="mb-3">
+                    {% if profile.profile_image %}
+                      <img src="{{ profile.profile_image.url }}" alt="Profile Image" class="img-fluid rounded-circle profile-image">
+                    {% else %}
+                      <img src="{% static 'images/default_profile.png' %}" alt="Default Profile Image" class="img-fluid rounded-circle profile-image">
+                    {% endif %}
+                  </div>
+                <div class="mb-3">
+                  <h5 class="mt-2">{{ user.get_full_name|default:user.username }}</h5>
+                  <p class="text-muted mb-1"><i class="fas fa-envelope me-2"></i>{{ user.email }}</p>
+                  <p class="text-muted mb-1"><i class="fas fa-user me-2"></i>Username: {{ user.username }}</p>
+                  <p class="text-muted mb-1"><i class="fas fa-calendar-alt me-2"></i>Member since: {{ user.date_joined|date:"F j, Y" }}</p>
+                  <a href="{% url 'account_logout' %}" class="btn btn-outline-danger btn-sm mt-3">Logout</a>
+                  <a href="{% url 'edit_profile' %}" class="btn btn-outline-primary btn-sm mt-3">Edit Profile</a>
+              </div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Manage Products Card -->
-    <div class="col-md-7">
+    <div class="col-sm-12 col-md-8">
       <div class="card shadow-sm border-0 rounded-3">
         <div class="card-body p-4">
           <h4 class="card-title mb-3">Manage Your Products</h4>
@@ -103,5 +109,6 @@
     </div>
   </div>
 </div>
+
 {% endblock %}
 

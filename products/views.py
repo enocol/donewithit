@@ -65,7 +65,8 @@ def product_list(request):
 def product_detail(request, product_id):
     '''Product detail view'''
     product = get_object_or_404(Product, id=product_id)
-    categories = Category.objects.all()  
+    categories = Category.objects.all()
+    print(categories.query) 
 
     if product.images.exists():
         images = product.images.all()

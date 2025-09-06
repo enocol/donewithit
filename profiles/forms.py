@@ -1,6 +1,8 @@
 from django import forms
 from django.forms import inlineformset_factory
+from products.management.commands.populate_data import User
 from products.models import Product, MoreProductImage, Category
+from profiles.models import Profile
 
 class ProductEditForm(forms.ModelForm):
     category = forms.ModelChoiceField(
@@ -47,3 +49,22 @@ MoreProductImageFormSet = inlineformset_factory(
     validate_max=True,
     can_delete=True,  # allow removing existing images
 )
+
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['profile_image']
+        widgets = {
+            'profile_image': forms.ClearableFileInput(attrs={'accept': 'image/*'}),
+        }
+
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email']
+        widgets = {
+            'first_name': forms.TextInput(attrs={'placeholder': 'First Name'}),
+            'last_name': forms.TextInput(attrs={'placeholder': 'Last Name'}),
+            'email': forms.EmailInput(attrs={'placeholder': 'Email Address'}),
+        }

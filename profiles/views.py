@@ -1,7 +1,8 @@
 from django.shortcuts import render
+from products.management.commands.populate_data import User
 from products.models import Product
-from .forms import ProductEditForm, MoreProductImageFormSet
-
+from .forms import ProductEditForm, MoreProductImageFormSet, ProfileForm, UserForm
+from .models import Profile
 from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse
 from django.contrib import messages
@@ -17,14 +18,49 @@ def profile(request):
     """
     Render the user profile page.
     """
-    products = Product.objects.filter(seller=request.user)  
+    products = Product.objects.filter(seller=request.user)
+    profile, _ = Profile.objects.get_or_create(user=request.user)
    
     context = {
         'products': products,
-        
+        'profile': profile
     }
     return render(request, 'profiles/profile.html', context)
 
+
+# profiles/views.py
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from .models import Profile
+from .forms import UserForm, ProfileForm
+
+@login_required
+def edit_profile(request):
+    # Ensure the profile exists for this user
+    profile, _ = Profile.objects.get_or_create(user=request.user)
+
+    if request.method == "POST":
+        uform = UserForm(request.POST, instance=request.user)
+        pform = ProfileForm(request.POST, request.FILES, instance=profile)
+        if uform.is_valid() and pform.is_valid():
+            uform.save()
+            pform.save()
+            messages.success(request, "Your profile has been updated.")
+            return redirect("profile")  # adjust to your profile view name
+        else:
+            messages.error(request, "Please correct the errors below.")
+    else:
+        uform = UserForm(instance=request.user)
+        pform = ProfileForm(instance=profile)
+
+        context = {
+            "uform": uform,
+            "pform": pform,
+            
+        }
+
+    return render(request, "profiles/edit_profile.html", context)
 
 @login_required
 @transaction.atomic
