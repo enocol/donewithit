@@ -32,7 +32,7 @@
               <hr>
                   <div class="mb-3">
                     {% if profile.profile_image %}
-                      <img src="{{ profile.profile_image.url }}" alt="Profile Image" class="img-fluid rounded-circle profile-image">
+                      <img src="{{ profile.profile_image.url }}" alt="Profile Image" class="img-fluid rounded-circle profile-image text-center">
                     {% else %}
                       <img src="{% static 'images/default_profile.png' %}" alt="Default Profile Image" class="img-fluid rounded-circle profile-image">
                     {% endif %}
