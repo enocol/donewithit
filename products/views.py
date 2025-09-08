@@ -11,9 +11,12 @@ def product_list(request):
     categories = Category.objects.all()  
     search_query = request.GET.get('search', None)
     category_filter = request.GET.get('category', None)
+    print(f"Category filter: {category_filter}")
+    category_label = dict(Category.CATEGORY_TYPES).get(category_filter, 'Unknown')
     products = Product.objects.all()
 
-    sort_option = request.GET.get('sort')
+    sort_option = request.GET.get('sort', '')
+   
 
     if sort_option == "price_asc":
         products = products.order_by("price")
@@ -27,6 +30,9 @@ def product_list(request):
         products = products.order_by("created_at")
     elif sort_option == "date_desc":
         products = products.order_by("-created_at")
+    else:
+        if sort_option == "":
+            products = products.order_by("product_name")
 
     sort_options = [
         ("price_asc", "Price: Low to High"),
@@ -58,6 +64,9 @@ def product_list(request):
         'products': products,
         'categories': categories,
         'sort_options': sort_options,
+        'current_sort': sort_option,
+        'search_query': search_query,
+        'category_filter': category_label,
     }
     return render(request, 'products/product_list.html', context)
 
@@ -65,8 +74,8 @@ def product_list(request):
 def product_detail(request, product_id):
     '''Product detail view'''
     product = get_object_or_404(Product, id=product_id)
+    similar_products = Product.objects.filter(category=product.category).exclude(id=product.id)[:4]
     categories = Category.objects.all()
-    print(categories.query) 
 
     if product.images.exists():
         images = product.images.all()
@@ -79,6 +88,8 @@ def product_detail(request, product_id):
         'product': product,
         'categories': categories,
         'images': images if 'images' in locals() else None, 
+        'similar_products': similar_products,
+       
     }
     return render(request, 'products/product_detail.html', context)
 

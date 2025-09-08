@@ -175,7 +175,7 @@ ul a {
     min-height: 50vh;
     background: url("../images/background-image.jpg") center no-repeat;
     padding: 20px;
-    background-size: 100% auto;
+    background-size: 100% 100%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
