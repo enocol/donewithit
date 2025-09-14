@@ -1,59 +1,83 @@
-<nav class="navbar navbar-expand-md  px-3 py-2 mobile-header">
-  <div class="container-fluid">
-    <!-- Logo / Brand -->
-       <div>
-            <h1>MarketPlace</h1>
-        </div>
+ <nav class="navbar navbar-light bg-light px-3 d-lg-none">
+    <a class="navbar-brand fw-semibold" href="#">MarketCorner</a>
 
-    <!-- Hamburger toggle -->
-    <button
-      class="navbar-toggler ms-auto bg-light"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#mainNavbar"
-      aria-controls="mainNavbar"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
+    <!-- Offcanvas toggle button (shows on mobile) -->
+    <button class="btn btn-outline-secondary d-lg-none"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#mobileMenu"
+        data-bs-backdrop="true" 
+        data-bs-scroll="false" 
+        aria-controls="mobileMenu">
+
+        <i class="fa fa-bars"></i>
+
     </button>
 
-    <!-- Collapsible menu -->
-    <div class="collapse navbar-collapse" id="mainNavbar">
-       <a class="btn btn-outline-primary mb-2 me-auto "  href="{% url 'product_list' %}">Products</a>
     
+    
+  </nav>
 
-      <!-- Login/Register -->
-      <div class="d-flex flex-column flex-md-row gap-2">
-       {% if user.is_authenticated %}
-       <a class="btn btn-outline-primary" href="{% url 'product_create' %}">Post an Ad</a>
-       <a class="btn btn-outline-primary" href="{% url 'profile' %}">Profile</a>
-       <a class="btn btn-outline-primary" href="{% url 'account_logout' %}">Logout</a>
-        
-        {% else %}
-        <a class="btn btn-outline-primary" href="{% url 'account_login' %}">Login</a>
-        <a class="btn btn-outline-primary" href="{% url 'account_signup' %}">Sign Up</a>
-        {% endif %}
+<div class="offcanvas offcanvas-start  d-lg-none" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title">Menu</h5>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+      <div class="offcanvas-body d-flex flex-column">
+            <hr class="my-3">
+                <a class="nav-link" href="{% url 'product_list' %}">Products</a>
+                {% if user.is_authenticated %}
+                <a class="nav-link" href="{% url 'product_create' %}">Post an Ad</a>
+                <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+                {% else %}  
+                <a class="nav-link" href="{% url 'account_login' %}">Sign in</a>
+                <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
+                {% endif %}
+            <hr class="my-3">
+
+            {% include 'includes/searchform.html' %}
+            <hr class="my-3">
+                <a href="#"
+                  class="btn btn-outline-secondary d-lg-none"
+                  data-bs-toggle="modal"
+                  data-bs-target="#allCategoriesModal">
+                  All Categories
+                </a>
+                <a class="btn btn-outline-primary w-100 mb-2" href="#">New Arrivals</a>
+                <a class="btn btn-outline-dark w-100" href="#">On Sale</a>
       </div>
-    </div>
-  </div>
-</nav>
+</div>
 
  {% if cart_total %}
 <div class="bg-light px-3 py-2 d-block d-md-none">
   <a href="{% url 'shopping_cart' %}" class="btn btn-warning w-100">
-    <i class="fas fa-shopping-cart"></i> 
-   
-      £{{ cart_total|floatformat:2 }}
-    
-    
+      <i class="fas fa-shopping-cart"></i> £{{ cart_total|floatformat:2 }}
   </a>
 </div>
 {% else %}
-<div class="bg-light px-3 py-2 d-block d-md-none">
-  <a href="{% url 'shopping_cart' %}" class="btn btn-warning w-100">
-    <i class="fas fa-shopping-cart"></i> (0.00)
-  </a>  
-</div>
+    <div class="bg-light px-3 py-2 d-block d-md-none">
+      <a href="{% url 'shopping_cart' %}" class="btn btn-warning w-100">
+        <i class="fas fa-shopping-cart"></i> (0.00)
+      </a>  
+    </div>
 
 {% endif %}
+
+
+
+<script>
+  // Simple client-side filter
+  document.addEventListener('DOMContentLoaded', function () {
+    const input = document.getElementById('catSearch');
+    const list = document.getElementById('categoryList');
+    if (!input || !list) return;
+
+    input.addEventListener('input', function () {
+      const q = this.value.toLowerCase();
+      list.querySelectorAll('.list-group-item').forEach(item => {
+        item.style.display = item.textContent.toLowerCase().includes(q) ? '' : 'none';
+      });
+    });
+  });
+</script>

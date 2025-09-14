@@ -11,7 +11,7 @@ def product_list(request):
     categories = Category.objects.all()  
     search_query = request.GET.get('search', None)
     category_filter = request.GET.get('category', None)
-    print(f"Category filter: {category_filter}")
+   
     category_label = dict(Category.CATEGORY_TYPES).get(category_filter, 'Unknown')
     products = Product.objects.all()
 

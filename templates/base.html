@@ -69,5 +69,40 @@
     {% endblock corejs %}
     {% block scripts %}
     {% endblock scripts %}
+
+    <!-- Modal -->
+<div class="modal fade d-lg-none " id="allCategoriesModal" tabindex="-1"
+     aria-labelledby="allCategoriesLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-fullscreen-sm-down">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="allCategoriesLabel">All Categories</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Sticky search (optional) -->
+          <div class="position-sticky top-0 bg-white pb-2 mb-2">
+            <input type="search" id="catSearch" class="form-control"
+                  placeholder="Search categories…">
+          </div>
+
+      
+          <div class="list-group" id="categoryList">
+                {% for c in categories %}
+                <a href="{% url 'product_list' %}?category={{ c.name }}" class=""
+              ><div class="category">{{ c.get_display_name }}</div></a>
+                {% endfor %}
+          </div>
+      </div>
+
+      <!-- Optional footer (hidden on small screens if you prefer) -->
+      <div class="modal-footer  d-sm-flex">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
   </body>
 </html>
