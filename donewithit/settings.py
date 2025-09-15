@@ -213,7 +213,7 @@ STRIPE_CLIENT_SECRET = os.environ.get('STRIPE_CLIENT_SECRET', '')
 
 if 'DEVELOPMENT' in os.environ:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-    DEFAULT_EMAIL_FROM = 'marketcorner@example.com'
+    DEFAULT_FROM_EMAIL = env.get('DEFAULT_FROM_EMAIL', 'marketcorner@example.com')
 else:
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     EMAIL_USE_TLS = True
@@ -221,4 +221,4 @@ else:
     EMAIL_HOST = 'smtp.gmail.com'
     EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
     EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
-    DEFAULT_EMAIL_FROM = os.environ.get('EMAIL_HOST_USER')
+    DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
