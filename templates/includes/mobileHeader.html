@@ -36,7 +36,7 @@
                 {% endif %}
             <hr class="my-3">
 
-            {% include 'includes/searchform.html' %}
+           
             <hr class="my-3">
                 <a href="#"
                   class="btn btn-outline-secondary d-lg-none"
@@ -60,6 +60,10 @@
       <a href="{% url 'shopping_cart' %}" class="btn btn-warning w-100">
         <i class="fas fa-shopping-cart"></i> (0.00)
       </a>  
+    </div>
+
+    <div class="p-3 d-block d-md-none">
+      {% include 'includes/searchform.html' %}
     </div>
 
 {% endif %}

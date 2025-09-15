@@ -89,6 +89,8 @@ ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 ACCOUNT_USERNAME_MAX_LENGTH = 150
 
+
+
 MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -208,3 +210,15 @@ DELIVERY_CHARGE = 5.00  # Flat delivery charge for all orders
 # Stripe settings
 STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', '')
 STRIPE_CLIENT_SECRET = os.environ.get('STRIPE_CLIENT_SECRET', '')
+
+if 'DEVELOPMENT' in os.environ:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    DEFAULT_EMAIL_FROM = 'marketcorner@example.com'
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_USE_TLS = True
+    EMAIL_PORT = 587
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+    EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+    DEFAULT_EMAIL_FROM = os.environ.get('EMAIL_HOST_USER')

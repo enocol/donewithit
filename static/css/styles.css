@@ -305,6 +305,10 @@ ul a {
      .modal-backdrop {
      display: none; /* Disable backdrop */
     }
+
+    .search {
+        width: 500px;
+    }
 }
 
 
