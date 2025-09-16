@@ -16,6 +16,7 @@ def product_list(request):
     products = Product.objects.all()
 
     sort_option = request.GET.get('sort', '')
+
    
 
     if sort_option == "price_asc":
