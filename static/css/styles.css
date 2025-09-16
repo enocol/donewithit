@@ -250,6 +250,23 @@ ul a {
   backdrop-filter: blur(5px);
 }
 
+    #id_email, #id_username, #id_password1, #id_password2, #id_login, #id_password{
+        width: 100%;
+        max-width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-size: 16px;
+    }
+   
+    label {
+        font-weight: 600;
+        font-size: 18px;
+        display: block;
+    }
+
 
 
 @media screen and (max-width: 768px) {
@@ -288,8 +305,7 @@ ul a {
         width: 100%;
     }
 
-   
-
+  
 
 }
 
@@ -309,6 +325,8 @@ ul a {
     .search {
         width: 500px;
     }
+
+   
 }
 
 

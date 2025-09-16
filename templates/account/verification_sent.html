@@ -1,14 +1,59 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% load allauth %}
-{% block head_title %}
-    {% trans "Verify Your Email Address" %}
-{% endblock head_title %}
+
+{% block head_title %}{% trans "Verify Your Email Address" %}{% endblock head_title %}
+
 {% block content %}
-    {% element h1 %}
-        {% trans "Verify Your Email Address" %}
-    {% endelement %}
-    {% element p %}
-        {% blocktrans %}We have sent an email to you for verification. Follow the link provided to finalize the signup process. If you do not see the verification email in your main inbox, check your spam folder. Please contact us if you do not receive the verification email within a few minutes.{% endblocktrans %}
-    {% endelement %}
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-10 col-lg-7">
+      <div class="card shadow-sm border-0">
+        <div class="card-body p-4 p-md-5 text-center">
+          <!-- Icon (uses Bootstrap Icons if available) -->
+          <div class="mb-3">
+            <i class="bi bi-envelope-check display-5"></i>
+          </div>
+
+          {% element h1 class="h3 mb-3" %}
+            {% trans "Verify Your Email Address" %}
+          {% endelement %}
+
+          {% element p class="text-secondary mb-4" %}
+            {% blocktrans %}
+              We have sent an email to you for verification. Follow the link provided to finalize the signup process.
+              If you do not see the verification email in your main inbox, check your spam folder. Please contact us if
+              you do not receive the verification email within a few minutes.
+            {% endblocktrans %}
+          {% endelement %}
+
+          <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <a href="/" class="btn btn-primary">
+              <i class="bi bi-house-door me-1"></i> {% trans "Back to Home" %}
+            </a>
+            <a href="mailto:" class="btn btn-outline-secondary">
+              <i class="bi bi-envelope-open me-1"></i> {% trans "Open Email App" %}
+            </a>
+          </div>
+
+          <hr class="my-4">
+
+          <div class="small text-secondary">
+            {% trans "Wrong email or need a new link?" %} 
+            <a href="{% url 'account_email' %}" class="link-primary">
+              {% trans "Manage emails" %}
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-3">
+        <span class="badge bg-light text-secondary border">
+          <i class="bi bi-shield-lock me-1"></i> {% trans "Security first: we never share your email." %}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock content %}
+
