@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
 ]
 
+
 SITE_ID = 1
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"  #"bootstrap5"
@@ -88,6 +89,7 @@ ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 ACCOUNT_USERNAME_MAX_LENGTH = 150
+ACCOUNT_UNIQUE_EMAIL = True
 
 
 
@@ -203,6 +205,7 @@ CLOUDINARY_STORAGE = {
     'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
     'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
     'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
+    'SECURE': True,
 }
 
 DELIVERY_CHARGE = 5.00  # Flat delivery charge for all orders

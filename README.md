@@ -396,3 +396,4 @@ MIT License — see LICENSE file for details.
 - Add social authentication (Google, GitHub)
 - Implement sending email confirmation
 - Add user avatars and profile editing
+  <!-- cp -r <Location>/allauth/templates/* ./templates/allauth -->
