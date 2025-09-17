@@ -104,32 +104,26 @@
       <a href="{% url 'product_list' %}" class="btn btn-sm btn-outline-primary">Shop All</a>
     </div>
 
-    <div class="row g-4">
-      {% comment %} Example: iterate over products queryset from your view {% endcomment %}
-      {% for product in featured_products %}
-      <div class="col-6 col-md-4 col-lg-3">
-        <div class="card product-card border-0 shadow-sm h-100">
-          <a href="{% url 'product_detail' product.id %}" class="text-decoration-none text-dark">
-            <div class="ratio ratio-1x1">
-              {% if product.main_image %}
-                <img src="{{ product.main_image.url }}" class="object-fit-cover rounded-top" alt="{{ product.product_name }}">
-              {% else %}
-                <img src="{% static 'images/placeholder.png' %}" class="object-fit-cover rounded-top" alt="{{ product.product_name }}">
-              {% endif %}
-            </div>
-            <div class="card-body">
-              <h3 class="h6 text-truncate mb-1">{{ product.product_name }}</h3>
-              <p class="text-primary fw-semibold mb-0">£{{ product.price }}</p>
-            </div>
-          </a>
+    <div class="product-scroll d-flex gap-3 overflow-auto py-3">
+  {% for product in featured_products %}
+    <div class="card product-card border-0 shadow-sm" style="min-width: 200px; max-width: 220px;">
+      <a href="{% url 'product_detail' product.id %}" class="text-decoration-none text-dark">
+        <div class="ratio ratio-1x1">
+          {% if product.main_image %}
+            <img src="{{ product.main_image.url }}" class="object-fit-cover rounded-top" alt="{{ product.product_name }}">
+          {% else %}
+            <img src="{% static 'images/placeholder.png' %}" class="object-fit-cover rounded-top" alt="{{ product.product_name }}">
+          {% endif %}
         </div>
-      </div>
-      {% empty %}
-      <div class="col-12">
-        <div class="alert alert-info mb-0">No featured products yet. Add some in the admin.</div>
-      </div>
-      {% endfor %}
+        <div class="card-body">
+          <h3 class="h6 text-truncate mb-1">{{ product.product_name }}</h3>
+          <p class="text-primary fw-semibold mb-0">£{{ product.price }}</p>
+        </div>
+      </a>
     </div>
+  {% endfor %}
+</div>
+
   </div>
 </section>
 
