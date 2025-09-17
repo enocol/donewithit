@@ -328,6 +328,22 @@ label {
      background: var(--bs-light);
  }
 
+ .category-scroll {
+  white-space: nowrap;
+  scrollbar-width: thin; /* Firefox */
+  height: 150px;
+}
+.category-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+.category-scroll::-webkit-scrollbar-thumb {
+  background: #bbb;
+  border-radius: 4px;
+}
+.category-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
 /* media queries */
 
 @media screen and (max-width: 768px) {
@@ -385,6 +401,7 @@ label {
    }
     
 }
+
 
 @media screen and (min-width: 769px) {
     .mobile-header {

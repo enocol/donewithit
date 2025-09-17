@@ -386,6 +386,22 @@ label {
     
 }
 
+.category-scroll {
+  white-space: nowrap;
+  scrollbar-width: thin; /* Firefox */
+}
+.category-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+.category-scroll::-webkit-scrollbar-thumb {
+  background: #bbb;
+  border-radius: 4px;
+}
+.category-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+
 @media screen and (min-width: 769px) {
     .mobile-header {
         display: none;

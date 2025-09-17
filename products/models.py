@@ -10,28 +10,28 @@ class Category(models.Model):
     CATEGORY_TYPES = [
         
         ('BOOKS', 'Books'),
-        ('CLOTH', 'Clothing'),
-        ('ELEC', 'Electronics'),
-        ('FURN', 'Furniture'),
+        ('CLOTHING', 'Clothing'),
+        ('ELECTRONICS', 'Electronics'),
+        ('FURNITURE', 'Furniture'),
         ('TOYS', 'Toys'),
-        ('SPORT', 'Sports Equipment'),
-        ('MISC', 'Miscellaneous'),
+        ('SPORTS', 'Sports Equipment'),
+        ('MISCELLANEOUS', 'Miscellaneous'),
         ('OTHER', 'Other'),
         ('VEHICLE', 'Vehicle'),
         ('JEWELRY', 'Jewelry'),
         ('HOME', 'Home Appliances'),
         ('GARDEN', 'Garden Supplies'),
         ('TOOLS', 'Tools'),
-        ('ART', 'Art & Collectibles'),
-        ('PETS', 'Pet Supplies'),
+        ('ART_AND_COLLECTIBLES', 'Art & Collectibles'),
+        ('PETS_AND_PET_SUPPLIES', 'Pet Supplies'),
     ]
     name = models.CharField(
-        max_length=10,
+        max_length=100,
         choices=CATEGORY_TYPES,
-        default='',
+        unique=True
     )
-    display_name = models.CharField(max_length=50, blank=True, null=True)
-    
+    display_name = models.CharField(max_length=100, blank=True, null=True)
+
 
     def __str__(self):
         return f"{self.name}"
@@ -42,7 +42,7 @@ class Category(models.Model):
         ordering = ['-name']
 
     def get_display_name(self):
-          return dict(self.CATEGORY_TYPES).get(self.name, 'Unknown')
+          return dict(self.CATEGORY_TYPES).get(self.name, self.name)
 
 class Product(models.Model):
     seller = models.ForeignKey(User, on_delete=models.CASCADE, related_name='products')
