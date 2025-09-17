@@ -201,9 +201,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Cloudinary settings
-
-
-cloudinary.config(secure=True)  # reads CLOUDINARY_URL automatically
+cloudinary.config(secure=True)  
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
@@ -212,7 +210,7 @@ CLOUDINARY_STORAGE = {
     'SECURE': True,
 }
 
-DELIVERY_CHARGE = 5.00  # Flat delivery charge for all orders
+DELIVERY_CHARGE = 5.00  
 
 # Stripe settings
 STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', '')
