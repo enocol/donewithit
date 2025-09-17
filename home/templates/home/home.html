@@ -1,26 +1,154 @@
 
 
-{% extends 'base.html' %}
-{% load static %} 
+{% extends "base.html" %}
+{% load static %}
 
 {% block content %}
-    <div class="container-fluid background h-100">
-      <div class="row  text-white">
-        <p>Welcome to Marketplace</p>
-        <p>Discover a wide range of products at unbeatable prices.</p>
+<!-- HERO -->
+<section class="hero position-relative overflow-hidden">
+  <picture>
+    <!-- optional mobile-specific image -->
+    <source media="(max-width: 576px)" srcset="{% static 'images/hero-mobile.jpg' %}">
+    <img src="{% static 'images/hero-mobile.jpg' %}" class="hero-bg" alt="Marketplace hero background">
+  </picture>
 
-        <p>Here you can find products of all categories.</p>
-      <div class="col-4"> </div>
+  <div class="hero-overlay"></div>
+  <div class="container position-relative z-1">
+    <div class="row align-items-center min-vh-60 py-5">
+      <div class="col-12 col-lg-7 text-center text-lg-start">
+        <h1 class="display-5 fw-bold text-white">Welcome to <span class="text-accent">Marketplace</span></h1>
+        <p class="lead text-white-50 mb-4">
+          Discover a wide range of products at unbeatable prices. Shop trusted sellers across every category.
+        </p>
+        <div class="d-flex gap-2 justify-content-center justify-content-lg-start">
+          <a class="btn btn-primary btn-lg px-4" href="{% url 'product_list' %}">Shop Now</a>
+          <a class="btn btn-outline-light btn-lg px-4" href="#categories">Browse Categories</a>
+        </div>
       </div>
-      <div class="col-4 square ">
-        <p></p>
-        <p> <a class="btn btn-primary" href="{% url 'product_list' %}">Shop Now</a></p>
-      </div>
-      <hr>
-      <div class="row">
-        <p>Explore our featured products and special offers.</p>  
+      <div class="col-12 col-lg-5 mt-4 mt-lg-0">
+        <!-- Optional promo card -->
+        <div class="card border-0 shadow-lg rounded-4">
+          <div class="card-body p-4">
+            <h3 class="h5 mb-2">Today’s Highlights</h3>
+            <ul class="list-unstyled mb-0 small text-secondary">
+              <li class="d-flex align-items-center gap-2 mb-2">
+                <i class="bi bi-lightning-charge"></i> Flash deals updated hourly
+              </li>
+              <li class="d-flex align-items-center gap-2 mb-2">
+                <i class="bi bi-shield-check"></i> Secure checkout & buyer protection
+              </li>
+              <li class="d-flex align-items-center gap-2">
+                <i class="bi bi-truck"></i> Fast shipping on top items
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
+  </div>
+</section>
 
-    
+<!-- VALUE PROPS -->
+<section class="py-5 bg-body">
+  <div class="container">
+    <div class="row g-4 text-center">
+      <div class="col-6 col-lg-3">
+        <div class="p-3">
+          <div class="icon-wrap mx-auto mb-2"><i class="bi bi-bag fs-3"></i></div>
+          <h3 class="h6 mb-1">Huge Selection</h3>
+          <p class="text-secondary small mb-0">Thousands of products across every category.</p>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="p-3">
+          <div class="icon-wrap mx-auto mb-2"><i class="bi bi-cash-coin fs-3"></i></div>
+          <h3 class="h6 mb-1">Great Prices</h3>
+          <p class="text-secondary small mb-0">Daily discounts and flash deals.</p>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="p-3">
+          <div class="icon-wrap mx-auto mb-2"><i class="bi bi-shield-lock fs-3"></i></div>
+          <h3 class="h6 mb-1">Secure</h3>
+          <p class="text-secondary small mb-0">Encrypted payments & verified sellers.</p>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="p-3">
+          <div class="icon-wrap mx-auto mb-2"><i class="bi bi-stars fs-3"></i></div>
+          <h3 class="h6 mb-1">Top Rated</h3>
+          <p class="text-secondary small mb-0">Reviews from real customers.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED CATEGORIES -->
+<section id="categories" class="py-5">
+  <div class="container">
+    <div class="d-flex align-items-center justify-content-between mb-4">
+      <h2 class="h4 mb-0">Popular Categories</h2>
+      <a href="{% url 'product_list' %}" class="btn btn-sm btn-outline-primary">View All</a>
+    </div>
+
+  
+  </div>
+</section>
+
+<!-- FEATURED PRODUCTS (placeholder grid; replace with your queryset) -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="d-flex align-items-center justify-content-between mb-4">
+      <h2 class="h4 mb-0">Featured Products</h2>
+      <a href="{% url 'product_list' %}" class="btn btn-sm btn-outline-primary">Shop All</a>
+    </div>
+
+    <div class="row g-4">
+      {% comment %} Example: iterate over products queryset from your view {% endcomment %}
+      {% for product in featured_products %}
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="card product-card border-0 shadow-sm h-100">
+          <a href="{% url 'product_detail' product.id %}" class="text-decoration-none text-dark">
+            <div class="ratio ratio-1x1">
+              {% if product.main_image %}
+                <img src="{{ product.main_image.url }}" class="object-fit-cover rounded-top" alt="{{ product.product_name }}">
+              {% else %}
+                <img src="{% static 'images/placeholder.png' %}" class="object-fit-cover rounded-top" alt="{{ product.product_name }}">
+              {% endif %}
+            </div>
+            <div class="card-body">
+              <h3 class="h6 text-truncate mb-1">{{ product.product_name }}</h3>
+              <p class="text-primary fw-semibold mb-0">£{{ product.price }}</p>
+            </div>
+          </a>
+        </div>
+      </div>
+      {% empty %}
+      <div class="col-12">
+        <div class="alert alert-info mb-0">No featured products yet. Add some in the admin.</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="py-5">
+  <div class="container">
+    <div class="row g-3 align-items-center">
+      <div class="col-12 col-lg-6">
+        <h2 class="h4 mb-2">Stay in the loop</h2>
+        <p class="text-secondary mb-0">Get updates on new arrivals and exclusive deals.</p>
+      </div>
+      <div class="col-12 col-lg-6">
+        <form class="d-flex gap-2">
+          <input type="email" class="form-control form-control-lg rounded-pill" placeholder="Your email address" required>
+          <button class="btn btn-primary btn-lg rounded-pill px-4" type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock %}
+

@@ -22,15 +22,12 @@
 
 <div class="container">
 
-
-<div class="d-flex justify-content-between mt-5 align-items-center gap-4">
+<div class="sorting-wrapper">
   <div>
-    <p class="d-flex align-items-center gap-2 m-0 text-secondary">
       <i class="fa-solid fa-list"></i>
       <span>{{ products|length }} Products Found</span>
-    </p>
   </div>
-  <div class="d-flex justify-content-end align-items-sm-center gap-2 w-50 w-sm-auto flex-sm-column flex-md-row">
+  <div class="sorting">
     <p class="m-0">Sort products:</p>
     <div class="dropdown">
             <button class="btn btn-outline-secondary w-100 dropdown-toggle" type="button" data-bs-toggle="dropdown">
@@ -77,13 +74,7 @@
         {% endfor %}
       </div>
       {% endif %}
-    </div>
-
-    <!-- <div class="container mt-3">
-      <div class="row">
-       
-      </div>
-    </div> -->
+</div>
 
     <div class="row">
       {% for product in products %}
@@ -96,7 +87,7 @@
               class="card-img-top"
               alt="{{ product.product_name }}"
             />
-            <div class="card-body p-2">
+            <div class="product-card-body  p-2">
               <h5 class="fs-6 uppercase gray-text">
                 {{ product.product_name }}
               </h5>
@@ -115,5 +106,4 @@
     </div>
   </div>
 </div>
-
 {% endblock %}
