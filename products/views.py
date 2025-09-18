@@ -1,3 +1,5 @@
+from django.utils import timezone
+from datetime import timedelta
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Q
@@ -11,13 +13,19 @@ def product_list(request):
     categories = Category.objects.all()  
     search_query = request.GET.get('search', None)
     category_filter = request.GET.get('category', None)
-   
+    filter_type = request.GET.get("filter")
     category_label = dict(Category.CATEGORY_TYPES).get(category_filter, 'Unknown')
     products = Product.objects.all()
-
     sort_option = request.GET.get('sort', '')
 
-   
+    if filter_type == "new_arrivals":
+        ten_days_ago = timezone.now() - timedelta(days=10)
+        products = Product.objects.filter(created_at__gte=ten_days_ago).order_by("-created_at")
+       
+        if not products.exists():
+            messages.info(request, "No new arrivals in the last 10 days.")
+            products = Product.objects.all()
+
 
     if sort_option == "price_asc":
         products = products.order_by("price")
@@ -60,6 +68,7 @@ def product_list(request):
         if not products.exists():
             messages.error(request, f"No products found in category '{category_filter}'.")
             products = Product.objects.all()
+    
 
     context = {
         'products': products,
