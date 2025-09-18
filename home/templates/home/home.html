@@ -1,5 +1,6 @@
 
 
+
 {% extends "base.html" %}
 {% load static %}
 
@@ -16,7 +17,7 @@
   <div class="container position-relative z-1">
     <div class="row align-items-center min-vh-60 py-5">
       <div class="col-12 col-lg-7 text-center text-lg-start">
-        <h1 class="display-5 fw-bold text-white">Welcome to <span class="text-accent">Marketplace</span></h1>
+        <h1 class="display-5 fw-bold text-white"> <span class="text-accent">Marketplace</span></h1>
         <p class="lead text-white-50 mb-4">
           Discover a wide range of products at unbeatable prices. Shop trusted sellers across every category.
         </p>
@@ -52,30 +53,28 @@
 <section class="py-5 bg-body">
   <div class="container">
     <div class="row g-4 text-center">
-      <div class="col-6 col-lg-3 shadow-lg">
-        <div class="p-3">
-          <div class="icon-wrap mx-auto mb-2"><i class="bi bi-bag fs-3"></i></div>
+      <div class="col-6 col-lg-3 ">
+        <div class="card p-3 shadow-lg">
           <h3 class="h6 mb-1">Huge Selection</h3>
           <p class="text-secondary small mb-0">Thousands of products across every category.</p>
         </div>
       </div>
-      <div class="col-6 col-lg-3 shadow-lg">
-        <div class="p-3">
-          <div class="icon-wrap mx-auto mb-2"><i class="bi bi-cash-coin fs-3"></i></div>
+      <div class="col-6 col-lg-3 ">
+        <div class="card p-3 shadow-lg">
+          
           <h3 class="h6 mb-1">Great Prices</h3>
           <p class="text-secondary small mb-0">Daily discounts and flash deals.</p>
         </div>
       </div>
-      <div class="col-6 col-lg-3 shadow-lg">
-        <div class="p-3">
-          <div class="icon-wrap mx-auto mb-2"><i class="bi bi-shield-lock fs-3"></i></div>
+      <div class="col-6 col-lg-3 ">
+        <div class="card p-3 shadow-lg">
+          
           <h3 class="h6 mb-1">Secure</h3>
           <p class="text-secondary small mb-0">Encrypted payments & verified sellers.</p>
         </div>
       </div>
-      <div class="col-6 col-lg-3 shadow-lg">
-        <div class="p-3">
-          <div class="icon-wrap mx-auto mb-2"><i class="bi bi-stars fs-3"></i></div>
+      <div class="col-6 col-lg-3 ">
+        <div class="card p-3 shadow-lg">
           <h3 class="h6 mb-1">Top Rated</h3>
           <p class="text-secondary small mb-0">Reviews from real customers.</p>
         </div>
@@ -92,17 +91,20 @@
       <a href="{% url 'product_list' %}" class="btn btn-sm btn-outline-primary">View All</a>
     </div>
 
-    <div class="category-scroll d-flex gap-3 overflow-auto py-3">
+<div class="category-scroll d-flex gap-3 overflow-auto" style="min-width: 18rem; max-width: 180%; height: 350px;"  >
   {% for category in categories %}
-    <div class="flex-shrink-0" style="min-width: 150px; max-width: 180px;">
-      <a href="{% url 'product_list' %}?category={{ category.name }}" class="text-decoration-none">
-        <div class="card category-card border-0 shadow-sm text-center h-100" style="width:200px; height:200px;">
-          <div class="card-body">
-            <span class="fw-semibold">{{ category }}</span>
-          </div>
+  <a href="{% url 'product_list' %}?category={{ category.name }}" class="text-decoration-none">
+    <div class=" card flex-shrink-0" style="min-width: 18rem; max-width: 180%; height: 250px;">
+       {% if category.image %}
+        <img src="{{ category.image.url }}" class="card-img-top object-fit-cover" alt="{{ category.name }}" style="width: 100%; height: 100%;">
+      {% else %}
+        <img src="{% static 'images/category-placeholder.png' %}" class="card-img-top object-fit-cover" alt="{{ category.name }}" style="height: 130px;">
+      {% endif %}
+        <div class="card-body">
+          <p class="card-text">{{ category }}</p>
         </div>
-      </a>
     </div>
+    </a>
   {% endfor %}
 </div>
 
@@ -110,7 +112,7 @@
 </section>
 
 
-<section class="py-5 bg-light">
+<section class="my-5 py-5 bg-light">
   <div class="container">
     <div class="d-flex align-items-center justify-content-between mb-4">
       <h2 class="h4 mb-0">Featured Products</h2>

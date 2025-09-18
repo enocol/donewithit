@@ -199,20 +199,6 @@ ul a {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.square {
-    background-color: transparent;
-    border: 2px solid #ccc;
-    padding: 20px;
-    height: 200px;
-    position: relative;
-    top: -50%;
-    transform: translateY(-50%);
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-}
 
 /* Profile Page Custom Styling */
 .profile-card {
@@ -348,15 +334,31 @@ label {
   scrollbar-width: thin; 
   height: 150px;
 }
+
 .category-scroll::-webkit-scrollbar {
   height: 8px;
 }
+
 .category-scroll::-webkit-scrollbar-thumb {
   background: #bbb;
   border-radius: 4px;
 }
+
 .category-scroll::-webkit-scrollbar-track {
   background: transparent;
+}
+
+.casdegory-scroll a {
+  min-height: 200px;
+}
+
+.card {
+ min-height: 100px;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0,0,0,.2);
 }
 
 
@@ -467,7 +469,6 @@ label {
     }
 
 }
-
 
 
 

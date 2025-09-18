@@ -28,8 +28,10 @@ class Category(models.Model):
     name = models.CharField(
         max_length=100,
         choices=CATEGORY_TYPES,
-        unique=True
+        unique=False,
+        null=True,
     )
+    image = CloudinaryField('image', null=True, blank=True)
     display_name = models.CharField(max_length=100, blank=True, null=True)
 
 
