@@ -8,7 +8,7 @@
 <!-- HERO -->
 <section class="hero position-relative overflow-hidden">
   <picture>
-    <!-- optional mobile-specific image -->
+    <!-- mobile-specific image -->
     <source media="(max-width: 576px)" srcset="{% static 'images/hero-mobile.jpg' %}">
     <img src="{% static 'images/hero-mobile.jpg' %}" class="hero-bg" alt="Marketplace hero background">
   </picture>
@@ -27,7 +27,7 @@
         </div>
       </div>
       <div class="col-12 col-lg-5 mt-4 mt-lg-0">
-        <!-- Optional promo card -->
+        <!--  promo card -->
         <div class="card border-0 shadow-lg rounded-4">
           <div class="card-body p-4">
             <h3 class="h5 mb-2">Today’s Highlights</h3>
@@ -101,7 +101,7 @@
         <img src="{% static 'images/category-placeholder.png' %}" class="card-img-top object-fit-cover" alt="{{ category.name }}" style="height: 130px;">
       {% endif %}
         <div class="card-body">
-          <p class="card-text">{{ category }}</p>
+          <p class="card-text btn btn-primary w-100">{{ category }}</p>
         </div>
     </div>
     </a>
@@ -132,7 +132,7 @@
             </div>
             <div class="card-body">
               <h3 class="h6 text-truncate mb-1">{{ product.product_name }}</h3>
-              <p class="text-primary fw-semibold mb-0">£{{ product.price }}</p>
+              <p class="text-white fw-semibold mb-0 btn btn-primary w-100">£{{ product.price }}</p>
             </div>
           </a>
         </div>

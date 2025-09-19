@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<div class="container py-4">
+<div class="container py-4 ">
   <h3 class="mb-3">Edit Profile</h3>
 
   {% if messages %}
@@ -11,7 +11,7 @@
     {% endfor %}
   {% endif %}
 
-  <form method="post" enctype="multipart/form-data" action="{% url 'edit_profile' %}" class="card p-3 shadow-sm">
+  <form method="post" enctype="multipart/form-data" action="{% url 'edit_profile' %}" class="card p-3 shadow-sm bg-light rounded-3">
     {% csrf_token %}
     <div class="row g-3">
       <div class="col-md-6">
