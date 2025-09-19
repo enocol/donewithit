@@ -1,8 +1,11 @@
 from django.utils import timezone
 from datetime import timedelta
 from django.contrib import messages
+from django.core.mail import send_mail
 from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Q
+
+from donewithit import settings
 from .models import Product
 from .models import Category
 from .forms import MoreProductImageFormSet, ProductForm
@@ -116,6 +119,14 @@ def product_create(request):
             if formset.is_valid():
                 product.save()
                 formset.save()
+                # Send a confirmation email to the seller
+                send_mail(
+                    'Your product has been listed',
+                    f'Thank you for listing your product {product.product_name} on our marketplace.',
+                    settings.DEFAULT_FROM_EMAIL,
+                    [request.user.email],
+                    fail_silently=False,
+                )
                 messages.success(request, "Product created successfully.")
                 return redirect('product_list')
     else:

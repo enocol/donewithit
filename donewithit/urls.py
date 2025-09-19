@@ -27,4 +27,5 @@ urlpatterns = [
     path('', include('checkout.urls')),  # Include the checkout app URLs
     path('', include('profiles.urls')),  # Include the profiles app URLs
     path("accounts/", include("allauth.urls")),
+    path("", include("subscriptions.urls")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -361,6 +361,34 @@ label {
   box-shadow: 0 8px 16px rgba(0,0,0,.2);
 }
 
+/* Footer polish */
+.footer-link {
+  color: rgba(255,255,255,.7);
+  text-decoration: none;
+}
+.footer-link:hover,
+.footer-link:focus {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.social-btn {
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-color: rgba(255,255,255,.35) !important;
+}
+.social-btn:hover { border-color: #fff !important; }
+
+/* Subtle borders in dark mode */
+.border-secondary-subtle {
+  border-color: rgba(255,255,255,.1) !important;
+}
+
+
 
 
 /* media queries */

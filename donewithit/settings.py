@@ -30,7 +30,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-vzw4ucy_)8#u1=iq-e_$r&-xv#rbzy5&*y+y$0rmewz7bpar81'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', ".herokuapp.com"]
 
@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'shoppingCart',  # Custom app for shopping cart functionality
     'checkout',  # Custom app for checkout process
     'profiles',  # Custom app for user profiles
+    'subscriptions',  # Custom app for managing subscriptions
     'crispy_forms',
     'crispy_bootstrap5',
 ]
