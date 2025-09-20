@@ -14,7 +14,7 @@
   <form method="post" enctype="multipart/form-data" class=" p-3 shadow-sm">
     {% csrf_token %}
 
-    <!-- Product fields -->
+    
 <div class="row g-3">
   {% for field in form %}
     <div class="row mb-3 align-items-center">
@@ -54,7 +54,7 @@
 
     <hr class="my-4"/>
 
-    <!-- Related images -->
+    
     <h2 class="h5">Additional Images</h2>
     {{ formset.management_form }}
     <div id="images-formset" class="row g-3">
@@ -89,7 +89,7 @@
       {% endfor %}
     </div>
 
-    <!-- Add-another (JS uses empty_form) -->
+    
     <template id="empty-form">
       <div class="col-md-6">
         <div class="border rounded p-3 h-100">
@@ -124,7 +124,6 @@
       if (total >= max) { alert('Maximum number of images reached.'); return; }
 
       const clone = document.importNode(tmpl, true);
-      // Fix __prefix__ in new field names/ids
       clone.querySelectorAll('[name],[id],[for]').forEach(el => {
         ['name','id','for'].forEach(attr => {
           if (el.hasAttribute(attr)) {

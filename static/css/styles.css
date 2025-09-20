@@ -251,8 +251,8 @@ ul a {
 }
 
 .modal-backdrop {
-  background-color: rgba(0,0,0,0.65) !important; /* darker */
-  z-index: 1050 !important; /* ensure it's above other elements */
+  background-color: rgba(0,0,0,0.65) !important; 
+  z-index: 1050 !important; 
   backdrop-filter: blur(5px);
 }
 
@@ -361,7 +361,7 @@ label {
   box-shadow: 0 8px 16px rgba(0,0,0,.2);
 }
 
-/* Footer polish */
+/* Footer */
 .footer-link {
   color: rgba(255,255,255,.7);
   text-decoration: none;
@@ -383,7 +383,7 @@ label {
 }
 .social-btn:hover { border-color: #fff !important; }
 
-/* Subtle borders in dark mode */
+
 .border-secondary-subtle {
   border-color: rgba(255,255,255,.1) !important;
 }
@@ -476,7 +476,7 @@ label {
     }
 
      .modal-backdrop {
-     display: none; /* Disable backdrop */
+     display: none; 
     }
 
     .search {

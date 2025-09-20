@@ -1,8 +1,6 @@
 from django.shortcuts import render
 
 # Create your views here.
-
-# newsletter/views.py
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.shortcuts import get_object_or_404, redirect, render
@@ -23,13 +21,12 @@ def newsletter_signup(request):
         form = NewsletterSignupForm(request.POST)
         if form.is_valid():
             email = form.cleaned_data["email"]
-            # Check if the email already exists
+            
             if Subscriber.objects.filter(email=email).exists():
                 messages.info(request, "You are already subscribed to the newsletter.")
             else:
-                # Save the new subscriber
+                
                 form.save()
-                # Send a welcome email
                 send_mail(
                     "Welcome to Our Newsletter",
                     "Thank you for subscribing to our newsletter!",

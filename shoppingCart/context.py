@@ -2,13 +2,15 @@
 
 from django.conf import settings
 from django.shortcuts import get_object_or_404
-from products.models import Product
+from products.models import Category, Product
 
 
 def cart_context(request):
     """
     Context processor to add cart information to the context.
     """
+    # make categories available in all templates
+    categories = Category.objects.all()
     delivery_charge = settings.DELIVERY_CHARGE
     cart = request.session.get('cart', {})
     cart_items = []
@@ -27,6 +29,7 @@ def cart_context(request):
         'cart_total': sum(float(item['price']) for item in cart_items),
         'cart_count': len(cart_items), 
         'delivery_charge': delivery_charge,
+        'categories': categories,
     }
 
     return context

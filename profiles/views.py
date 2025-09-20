@@ -8,6 +8,11 @@ from django.urls import reverse
 from django.contrib import messages
 from django.db import transaction
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from .models import Profile
+from .forms import UserForm, ProfileForm
 
 
 # Create your views here.
@@ -28,16 +33,9 @@ def profile(request):
     return render(request, 'profiles/profile.html', context)
 
 
-# profiles/views.py
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
-from django.contrib import messages
-from .models import Profile
-from .forms import UserForm, ProfileForm
 
 @login_required
 def edit_profile(request):
-    # Ensure the profile exists for this user
     profile, _ = Profile.objects.get_or_create(user=request.user)
 
     if request.method == "POST":
@@ -47,7 +45,7 @@ def edit_profile(request):
             uform.save()
             pform.save()
             messages.success(request, "Your profile has been updated.")
-            return redirect("profile")  # adjust to your profile view name
+            return redirect("profile") 
         else:
             messages.error(request, "Please correct the errors below.")
     else:
