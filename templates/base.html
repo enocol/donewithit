@@ -212,11 +212,13 @@
     <script src="{% static 'js/scripts.js' %}"></script>
 
       <script type="text/javascript">
-        // show toast if messages exist
-      
-          var toastEl = document.getElementById('liveToast');
-          var toast = new bootstrap.Toast(toastEl);
+       
+        document.addEventListener('DOMContentLoaded', () => {
+          const toastEl = document.getElementById('liveToast');
+          if (!toastEl) return; // No toast on this page
+          const toast = new bootstrap.Toast(toastEl);
           toast.show();
+  });
   
       </script>
     {% endblock corejs %}
