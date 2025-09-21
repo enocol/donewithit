@@ -43,8 +43,8 @@ def product_list(request):
     elif sort_option == "date_desc":
         products = products.order_by("-created_at")
     else:
-        if sort_option == "":
-            products = products.order_by("product_name")
+        sort_option == ""
+        products = products.order_by("product_name")
 
     sort_options = [
         ("price_asc", "Price: Low to High"),
@@ -62,8 +62,14 @@ def product_list(request):
             Q(description__icontains=search_query)
         )
         if not products.exists():
-            messages.error(request, f"No products found matching '{search_query}'.")
-            products = Product.objects.all()
+            messages.info(request, f"No products found matching '{search_query}'.")
+            products = Product.objects.none()
+    elif "search" in request.GET:
+        # Only show this if the user actually submitted the search param but it's empty
+        messages.error(request, "Please enter a valid search term.")
+        products = Product.objects.none()
+
+   
    
 
     if category_filter:
