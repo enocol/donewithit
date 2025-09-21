@@ -388,6 +388,10 @@ label {
   border-color: rgba(255,255,255,.1) !important;
 }
 
+.message-container {
+  background-color: #f8f9fa;
+}
+
 
 
 

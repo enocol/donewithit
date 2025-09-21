@@ -5,16 +5,9 @@
 <div class="container py-4 bg-light rounded-3 ">
   <h1 class="h4 mb-3">Edit: {{ product.product_name }}</h1>
 
-  {% if messages %}
-    {% for message in messages %}
-      <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-    {% endfor %}
-  {% endif %}
 
   <form method="post" enctype="multipart/form-data" class=" p-3 shadow-sm">
     {% csrf_token %}
-
-    
 <div class="row g-3">
   {% for field in form %}
     <div class="row mb-3 align-items-center">
@@ -30,7 +23,6 @@
                style="max-height: 120px;">
         </div>
       {% endif %}
-      {# Show category display name if editing an existing product #}
       {% if field.name == "category" %}
         <div class="mt-2">
           {{ form.instance.category.get_display_name }}
