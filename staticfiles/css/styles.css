@@ -361,6 +361,9 @@ label {
   box-shadow: 0 8px 16px rgba(0,0,0,.2);
 }
 
+
+
+
 /* Footer */
 .footer-link {
   color: rgba(255,255,255,.7);
@@ -391,6 +394,12 @@ label {
 .message-container {
   background-color: #f8f9fa;
 }
+
+section {
+        margin-top: 23px;
+        overflow: auto;
+        flex: 1 0 auto;
+    }
 
 
 
@@ -439,6 +448,10 @@ label {
         display: none; 
     }
 
+    section {
+        margin-top: 70px;
+    }
+
 
 }
 
@@ -466,6 +479,16 @@ label {
     .category-scroll::-webkit-scrollbar {
         display: none; 
     }
+
+    section {
+        margin-top: 65px;
+    }
+
+    .product-container, .product-detail-container {
+        margin-top: 115px;
+    }
+
+   
     
 }
 
@@ -500,6 +523,12 @@ label {
         gap: 10px;
     }
 
+    section {
+        margin-top: 45px;
+        
+    }
+
+    
 }
 
 

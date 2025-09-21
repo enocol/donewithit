@@ -6,7 +6,7 @@
 
 {% block content %}
 <!-- HERO -->
-<section class="hero position-relative overflow-hidden">
+<div class="hero position-relative overflow-hidden">
   <picture>
     <!-- mobile-specific image -->
     <source media="(max-width: 576px)" srcset="{% static 'images/hero-mobile.jpg' %}">
@@ -14,17 +14,17 @@
   </picture>
 
   <div class="hero-overlay"></div>
-  <div class="container position-relative z-1">
-    <div class="row align-items-center min-vh-60 py-5">
-      <div class="col-12 col-lg-7 text-center text-lg-start">
-        <h1 class="display-5 fw-bold text-white"> <span class="text-accent">Marketplace</span></h1>
-        <p class="lead text-white-50 mb-4">
-          Discover a wide range of products at unbeatable prices. Shop trusted sellers across every category.
-        </p>
-        <div class="d-flex gap-2 justify-content-center justify-content-lg-start">
-          <a class="btn btn-primary btn-lg px-4" href="{% url 'product_list' %}">Shop Now</a>
-          <a class="btn btn-outline-light btn-lg px-4" href="#categories">Browse Categories</a>
-        </div>
+    <div class="container position-relative z-1">
+      <div class="row align-items-center min-vh-60 py-5">
+        <div class="col-12 col-lg-7 text-center text-lg-start">
+            <h1 class="display-5 fw-bold text-white"> <span class="text-accent">Marketplace</span></h1>
+              <p class="lead text-white-50 mb-4">
+                Discover a wide range of products at unbeatable prices. Shop trusted sellers across every category.
+              </p>
+            <div class="d-flex gap-2 justify-content-center justify-content-lg-start">
+              <a class="btn btn-primary btn-lg px-4" href="{% url 'product_list' %}">Shop Now</a>
+              <a class="btn btn-outline-light btn-lg px-4" href="#categories">Browse Categories</a>
+            </div>
       </div>
       <div class="col-12 col-lg-5 mt-4 mt-lg-0">
         <!--  promo card -->
@@ -47,10 +47,10 @@
       </div>
     </div>
   </div>
-</section>
+</div>
 
 <!-- VALUE PROPS -->
-<section class="py-5 bg-body">
+<div class="py-5 bg-body">
   <div class="container">
     <div class="row g-4 text-center">
       <div class="col-6 col-lg-3 ">
@@ -81,10 +81,10 @@
       </div>
     </div>
   </div>
-</section>
+</div>
 
 <!-- FEATURED CATEGORIES -->
-<section id="categories" class="py-1">
+<div id="categories" class="py-1">
   <div class="container">
     <div class="d-flex align-items-center justify-content-between mb-4">
       <h2 class="h4 mb-0">Popular Categories</h2>
@@ -109,10 +109,10 @@
 </div>
 
   </div>
-</section>
+</div>
 
 
-<section class="my-5 py-5 bg-light">
+<div class="my-5 py-5 bg-light">
   <div class="container">
     <div class="d-flex align-items-center justify-content-between mb-4">
       <h2 class="h4 mb-0">Featured Products</h2>
@@ -140,7 +140,7 @@
  </div>
 
   </div>
-</section>
+</div>
 
 {% endblock %}
 

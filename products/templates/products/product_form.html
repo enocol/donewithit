@@ -7,7 +7,7 @@ Create Product
 
 {% load static %}
  {% block content %}
-<div class="container mt-5 mb-2 p-3 bg-light rounded-3">
+<div class="container product-container pt-5 mb-3 bg-light rounded-3">
     <h2>Post a Product</h2>
 <form method="post" action="{% url 'product_create' %}" enctype="multipart/form-data">
   {% csrf_token %} 
