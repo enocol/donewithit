@@ -21,11 +21,12 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('home.urls')),  # Include the home app URLs
-    path('', include('products.urls')),  # Include the products app URLs
-    path('', include('shoppingCart.urls')),  # Include the shopping cart app URLs
-    path('', include('checkout.urls')),  # Include the checkout app URLs
-    path('', include('profiles.urls')),  # Include the profiles app URLs
+    path('', include('home.urls')),  
+    path('', include('products.urls')),
+    path('', include('shoppingCart.urls')),
+    path('', include('checkout.urls')),
+    path('', include('profiles.urls')),
     path("accounts/", include("allauth.urls")),
     path("", include("subscriptions.urls")),
+    path('about/', include('about.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

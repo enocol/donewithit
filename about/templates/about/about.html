@@ -1,0 +1,227 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extracss %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+{% endblock extracss %}
+
+{% block content %}
+<section class="about-hero text-center text-md-start">
+  <div class="container py-5">
+    <div class="row align-items-center g-4">
+      <div class="col-md-7">
+        <h1 class="display-5 fw-bold mb-3">About <span class="brand">Market Place</span></h1>
+        <p class="lead mb-4">
+          Market Place is a community-driven marketplace where anyone can turn unwanted items into cash — and
+          where great deals find a second home. Buy and sell safely, locally or nationwide, with tools that
+          make listing fast and shopping simple.
+        </p>
+        <div class="d-flex gap-2 flex-wrap">
+          <a href="{% url 'product_list' %}" class="btn btn-primary btn-lg">Browse Items</a>
+          <a href="{% url 'product_create' %}" class="btn btn-outline-primary btn-lg">List an Item</a>
+        </div>
+      </div>
+      <div class="col-md-5 text-center">
+        <img class="img-fluid rounded-3 shadow-sm about-hero-img"
+             src="{% static 'images/about-hero.jpg' %}"
+             alt="People reselling and reusing items">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0">
+          <div class="card-body">
+            <h3 class="h5 fw-semibold mb-2">Our Mission</h3>
+            <p class="mb-0">
+              We help people declutter, save money, and reduce waste by keeping quality items in circulation.
+              Whether you’re clearing space or discovering a bargain, Market Place is the easiest way to trade responsibly.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0">
+          <div class="card-body">
+            <h3 class="h5 fw-semibold mb-2">Why It Matters</h3>
+            <p class="mb-0">
+              Reuse cuts carbon, supports local communities, and stretches budgets. Every sale keeps one more
+              item out of landfill — small actions, big impact.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0">
+          <div class="card-body">
+            <h3 class="h5 fw-semibold mb-2">Built for Everyone</h3>
+            <p class="mb-0">
+              Sellers get fast listings and fair prices. Buyers get trusted listings, clear photos, and smart
+              filters to find what they need quickly.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5">
+  <div class="container">
+    <h2 class="h3 text-center fw-bold mb-4">How It Works</h2>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-3">
+        <div class="how-step h-100">
+          <div class="how-num">1</div>
+          <h3 class="h6 fw-semibold">Create Your Account</h3>
+          <p class="mb-2">Sign up in seconds and set your preferences.</p>
+          <a href="{% url 'profile' %}" class="link-primary small">View profile</a>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="how-step h-100">
+          <div class="how-num">2</div>
+          <h3 class="h6 fw-semibold">List or Discover</h3>
+          <p class="mb-2">Upload photos, set a fair price — or browse by category and filters.</p>
+          <a href="{% url 'product_create' %}" class="link-primary small">List an item</a>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="how-step h-100">
+          <div class="how-num">3</div>
+          <h3 class="h6 fw-semibold">Chat & Agree</h3>
+          <p class="mb-2">Message securely, agree price and delivery/collection details.</p>
+          <span class="text-muted small">Built-in messaging (if enabled)</span>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="how-step h-100">
+          <div class="how-num">4</div>
+          <h3 class="h6 fw-semibold">Pay & Review</h3>
+          <p class="mb-2">Complete the sale and leave feedback to help the next shopper.</p>
+          <a href="{% url 'checkout' %}" class="link-primary small">Learn about checkout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-6">
+        <h2 class="h3 fw-bold mb-3">Trust & Safety</h2>
+        <ul class="list-unstyled mb-0 trust-list">
+          <li>✔️ Public profiles and clear item photos</li>
+          <li>✔️ Report & block tools to protect the community</li>
+          <li>✔️ Seller tips: pricing guidance & photo best practices</li>
+          <li>✔️ Buyer tips: meet-in-public/collection guidance</li>
+          <li>✔️ Secure checkout and order references (if enabled)</li>
+        </ul>
+      </div>
+      <div class="col-lg-6">
+        <h2 class="h3 fw-bold mb-3">Fees & Pricing</h2>
+        <p class="mb-2">
+          Listing is free. A small service fee may apply at checkout to support secure operations and platform improvements.
+        </p>
+        <p class="mb-0">
+          We’re transparent about costs before you pay. No surprises.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5">
+  <div class="container">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-7">
+        <h2 class="h3 fw-bold mb-3">Sustainability in Action</h2>
+        <p class="mb-3">
+          Every sale on Market Place keeps items in use longer. From electronics to furniture and fashion,
+          giving products a second life reduces waste and the need for new production.
+        </p>
+        <div class="d-flex flex-wrap gap-3">
+          <div class="stat">
+            <div class="stat-value">⟲</div>
+            <div class="stat-label">Reuse over landfill</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">££</div>
+            <div class="stat-label">Save & earn more</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">♥</div>
+            <div class="stat-label">Support local</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5 text-center">
+        <img class="img-fluid rounded-3 shadow-sm"
+             src="{% static 'images/sustainability.jpg' %}"
+             alt="Sustainable resale concept">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5 bg-light">
+  <div class="container">
+    <h2 class="h3 fw-bold text-center mb-4">Frequently Asked Questions</h2>
+    <div class="accordion" id="aboutFaq">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="q1">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#a1" aria-expanded="true" aria-controls="a1">
+            How do I list an item?
+          </button>
+        </h2>
+        <div id="a1" class="accordion-collapse collapse show" aria-labelledby="q1" data-bs-parent="#aboutFaq">
+          <div class="accordion-body">
+            Go to <a href="{% url 'product_create' %}">List an Item</a>, add photos, set a price, and publish. Your listing appears instantly in the relevant category.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="q2">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a2" aria-expanded="false" aria-controls="a2">
+            Is buying and selling safe?
+          </button>
+        </h2>
+        <div id="a2" class="accordion-collapse collapse" aria-labelledby="q2" data-bs-parent="#aboutFaq">
+          <div class="accordion-body">
+            Yes. Use our messaging to agree details, review seller ratings, and choose secure payment/collection options. Report anything suspicious from the listing page.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="q3">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a3" aria-expanded="false" aria-controls="a3">
+            Are there any fees?
+          </button>
+        </h2>
+        <div id="a3" class="accordion-collapse collapse" aria-labelledby="q3" data-bs-parent="#aboutFaq">
+          <div class="accordion-body">
+            Listing is free. A small service fee may apply at checkout; we show it clearly before you pay.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5 cta-section text-center">
+  <div class="container">
+    <h2 class="h3 fw-bold mb-3">Ready to clear space or find a deal?</h2>
+    <p class="mb-4">Join thousands of people buying and selling pre-loved items on Market Place.</p>
+    <div class="d-flex gap-2 justify-content-center flex-wrap">
+      <a href="{% url 'product_create' %}" class="btn btn-primary btn-lg">Start Selling</a>
+      <a href="{% url 'product_list' %}" class="btn btn-outline-primary btn-lg">Start Shopping</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

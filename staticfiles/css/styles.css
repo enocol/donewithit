@@ -371,8 +371,9 @@ label {
 }
 .footer-link:hover,
 .footer-link:focus {
-  color: #fff;
-  text-decoration: underline;
+  color: #000;
+  border-radius: 10px;
+  
 }
 
 .social-btn {
@@ -451,6 +452,9 @@ section {
     section {
         margin-top: 70px;
     }
+
+
+   
 
 
 }

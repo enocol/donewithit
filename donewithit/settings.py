@@ -52,10 +52,11 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'home',
-    'shoppingCart',  # Custom app for shopping cart functionality
-    'checkout',  # Custom app for checkout process
-    'profiles',  # Custom app for user profiles
-    'subscriptions',  # Custom app for managing subscriptions
+    'shoppingCart', 
+    'checkout',
+    'profiles', 
+    'subscriptions',  
+    'about',  
     'crispy_forms',
     'crispy_bootstrap5',
 ]
