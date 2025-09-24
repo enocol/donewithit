@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+<div class="container py-4">
+  <h1 class="h4 mb-3">Contact us</h1>
+
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+  {% endif %}
+
+  <form method="post" class="card p-3 shadow-sm" action="{% url 'contact:contact' %}">
+    {% if form.errors %}
+      <div class="alert alert-danger">
+        Please correct the errors below.
+      </div>
+    {% endif %}
+    {% csrf_token %}
+    {{ form.hp }}
+
+    {% if user.is_authenticated %}
+      <div class="mb-3">
+        <label class="form-label">Name</label>
+        <input class="form-control" value="{{ user.get_full_name|default:user.username }}" readonly>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input class="form-control" value="{{ user.email }}" readonly>
+      </div>
+    {% else %}
+      <div class="mb-3">{{ form.name.label_tag }} {{ form.name }}</div>
+      <div class="mb-3">{{ form.email.label_tag }} {{ form.email }}</div>
+    {% endif %}
+
+    <div class="mb-3">{{ form.subject.label_tag }} {{ form.subject }}</div>
+    <div class="mb-3">{{ form.message.label_tag }} {{ form.message }}</div>
+
+    <button class="btn btn-primary" type="submit">Send message</button>
+  </form>
+</div>
+{% endblock %}

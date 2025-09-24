@@ -30,7 +30,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-vzw4ucy_)8#u1=iq-e_$r&-xv#rbzy5&*y+y$0rmewz7bpar81'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', ".herokuapp.com"]
 
@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'profiles', 
     'subscriptions',  
     'about',  
+    'contact',
     'crispy_forms',
     'crispy_bootstrap5',
 ]
@@ -229,3 +230,4 @@ else:
     EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
     EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
     DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
+    CONTACT_RECIPIENT_EMAIL = "eno_col@yahoo.com"
