@@ -47,23 +47,28 @@
       </div>
 </div>
 
- {% if cart_total %}
-<div class="bg-light px-3 py-2 d-block d-md-none">
-  <a href="{% url 'shopping_cart' %}" class="btn btn-warning w-100">
+ {% if cart_total and cart_total > 300 %}
+  <div class="bg-light px-3 py-2 d-block d-md-none">
+    <a href="{% url 'shopping_cart' %}" class="btn btn-primary w-100">
       <i class="fas fa-shopping-cart"></i> £{{ cart_total|floatformat:2 }}
-  </a>
-</div>
+    </a>
+  </div>
+{% elif cart_total %}
+  <div class="bg-light px-3 py-2 d-block d-md-none">
+    <a href="{% url 'shopping_cart' %}" class="btn btn-warning w-100">
+      <i class="fas fa-shopping-cart"></i> £{{ cart_total|floatformat:2 }}
+    </a>
+  </div>
 {% else %}
-    <div class="bg-light px-3 py-2 d-block d-md-none">
-      <a href="{% url 'shopping_cart' %}" class="btn btn-warning w-100">
-        <i class="fas fa-shopping-cart"></i> (0.00)
-      </a>  
-    </div>
+  <div class="bg-light px-3 py-2 d-block d-md-none">
+    <a href="{% url 'shopping_cart' %}" class="btn btn-danger w-100">
+      <i class="fas fa-shopping-cart"></i> (0.00)
+    </a>
+  </div>
 
-    <div class="p-3 d-block d-md-none">
-      {% include 'includes/searchform.html' %}
-    </div>
-
+  <div class="p-3 d-block d-md-none">
+    {% include 'includes/searchform.html' %}
+  </div>
 {% endif %}
 
 

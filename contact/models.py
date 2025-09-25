@@ -9,8 +9,8 @@ class ContactMessage(models.Model):
         on_delete=models.SET_NULL,
         related_name="contact_messages",
     )
-    name = models.CharField(max_length=150)   # snapshot
-    email = models.EmailField()               # snapshot
+    name = models.CharField(max_length=150)  
+    email = models.EmailField()
     subject = models.CharField(max_length=200, blank=True)
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)

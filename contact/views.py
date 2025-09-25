@@ -24,8 +24,8 @@ def contact(request):
                 )
                 send_mail(subject, body, settings.DEFAULT_FROM_EMAIL, [to_address], fail_silently=True)
 
-            messages.success(request, "Thanks! Your message has been sent.")
-            return redirect("contact:contact")  
+            messages.info(request, "You will receive a reply to your email address if necessary.")
+            return redirect("profile")  
     else:
         contact_form = ContactForm(request.user)
 

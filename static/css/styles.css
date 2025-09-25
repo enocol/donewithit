@@ -256,7 +256,14 @@ ul a {
   backdrop-filter: blur(5px);
 }
 
-#id_email, #id_username, #id_password1, #id_password2, #id_login, #id_password{
+#id_email,
+ #id_username,
+  #id_password1,
+   #id_password2,
+    #id_login,
+     #id_password, 
+     #id_name,
+      #id_message, #id_subject {
     width: 100%;
     max-width: 100%;
     padding: 10px;
@@ -401,8 +408,14 @@ section {
         overflow: auto;
         flex: 1 0 auto;
     }
-
-
+.user-input input {
+    background-color: #fff;
+    border: none;
+} 
+ .user-input input:focus {
+    outline: none;
+    box-shadow: none;
+}
 
 
 /* media queries */

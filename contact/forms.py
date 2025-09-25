@@ -17,9 +17,8 @@ class ContactForm(forms.ModelForm):
             self.fields["email"].initial = user.email
             self.fields["name"].widget.attrs["readonly"] = True
             self.fields["email"].widget.attrs["readonly"] = True
-            
-            self.fields["name"].required = True
-            self.fields["email"].required = True
+            self.fields["name"].required = False
+            self.fields["email"].required = False
 
     def clean_hp(self):
         if self.cleaned_data.get("hp"):
