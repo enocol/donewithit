@@ -1,4 +1,6 @@
 # Create your views here.
+from django.core.mail import send_mail
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib import messages
@@ -58,6 +60,14 @@ def thread_detail(request, pk):
             msg.sender = request.user
             msg.recipient = thread.other_user(request.user)
             msg.save()
+            send_email = msg.recipient.email
+            if send_email:
+                # Send email notification logic here
+                
+                subject = f"New message about {thread.product.product_name}"
+                message = f"You have a new message from {msg.sender} regarding the product '{thread.product.product_name}'.\n\nMessage:\n{msg.body}\n\nView the conversation: http://{request.get_host()}/messages/thread/{thread.id}/"
+                send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [send_email])
+
             return redirect("messaging:thread_detail", pk=thread.id)
     else:
         form = MessageForm()

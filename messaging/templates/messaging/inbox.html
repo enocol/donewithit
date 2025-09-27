@@ -18,11 +18,8 @@
               Updated: {{ t.last_message_at|default:t.updated_at|date:"M j, Y, g:i a" }}
             </small>
           </div>
-          {% with unread=unread_counts.t.id %}
-          {% endwith %}
-          {% if unread_counts.t.id %}{% else %}{% endif %}
-          {% if unread_counts[t.id] %}
-            <span class="badge bg-primary rounded-pill">{{ unread_counts[t.id] }}</span>
+          {% if t.unread_count %}
+            <span class="badge bg-primary rounded-pill">{{ t.unread_count }}</span>
           {% endif %}
         </a>
       {% endfor %}
@@ -32,3 +29,4 @@
   {% endif %}
 </div>
 {% endblock %}
+
