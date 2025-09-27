@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container py-4">
+  <h2 class="h4 mb-3">Inbox</h2>
+
+  {% if threads %}
+    <div class="list-group">
+      {% for t in threads %}
+        <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+           href="{% url 'messaging:thread_detail' t.id %}">
+          <div>
+            <div class="fw-semibold">
+              {{ t.product.product_name }} —
+              {% if request.user == t.buyer %}Seller: {{ t.seller.username }}
+              {% else %}Buyer: {{ t.buyer.username }}{% endif %}
+            </div>
+            <small class="text-muted">
+              Updated: {{ t.last_message_at|default:t.updated_at|date:"M j, Y, g:i a" }}
+            </small>
+          </div>
+          {% with unread=unread_counts.t.id %}
+          {% endwith %}
+          {% if unread_counts.t.id %}{% else %}{% endif %}
+          {% if unread_counts[t.id] %}
+            <span class="badge bg-primary rounded-pill">{{ unread_counts[t.id] }}</span>
+          {% endif %}
+        </a>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="text-muted">No conversations yet.</p>
+  {% endif %}
+</div>
+{% endblock %}

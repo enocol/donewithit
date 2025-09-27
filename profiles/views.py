@@ -25,10 +25,12 @@ def profile(request):
     """
     products = Product.objects.filter(seller=request.user)
     profile, _ = Profile.objects.get_or_create(user=request.user)
+    
    
     context = {
         'products': products,
-        'profile': profile
+        'profile': profile,
+        
     }
     return render(request, 'profiles/profile.html', context)
 

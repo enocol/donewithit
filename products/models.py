@@ -42,6 +42,9 @@ class Category(models.Model):
         verbose_name = "Category"
         verbose_name_plural = "Categories"
         ordering = ['-name']
+        indexes = [
+            models.Index(fields=['name']),
+        ]
 
     def get_display_name(self):
           return dict(self.CATEGORY_TYPES).get(self.name, self.name)

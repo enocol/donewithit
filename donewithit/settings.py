@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'subscriptions',  
     'about',  
     'contact',
+    'messaging',
     'crispy_forms',
     'crispy_bootstrap5',
 ]

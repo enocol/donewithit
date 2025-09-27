@@ -30,4 +30,5 @@ urlpatterns = [
     path("", include("subscriptions.urls")),
     path('about/', include('about.urls')),
     path('contact/', include('contact.urls')),
+    path('messaging/', include('messaging.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

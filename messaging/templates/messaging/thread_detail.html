@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="container pt-5">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="h5 mb-0">Messages: {{ thread.product.product_name }}</h2>
+    <a class="btn btn-sm btn-outline-secondary"
+       href="{% url 'product_detail' thread.product.id %}">View item</a>
+  </div>
+
+  <div class="card shadow-sm mb-3">
+    <div class="card-body" style="max-height: 50vh; overflow-y: auto;">
+      {% for m in messages %}
+        <div class="mb-3">
+          <div class="small text-muted">
+            <strong>{{ m.sender.username }}</strong>
+            <span>• {{ m.created_at|date:"M j, Y, g:i a" }}</span>
+            {% if not m.is_read and m.recipient == request.user %}<span class="badge bg-warning text-dark ms-2">new</span>{% endif %}
+          </div>
+          <div>{{ m.body|linebreaksbr }}</div>
+        </div>
+      {% empty %}
+        <p class="text-muted mb-0">No messages yet.</p>
+      {% endfor %}
+    </div>
+  </div>
+
+  <form method="post" class="card p-3 shadow-sm">
+    {% csrf_token %}
+    {{ form.body }}
+    <div class="mt-2 text-end">
+      <button class="btn btn-primary">Send</button>
+    </div>
+  </form>
+</section>
+{% endblock %}

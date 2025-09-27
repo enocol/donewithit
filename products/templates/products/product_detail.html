@@ -28,6 +28,17 @@
                 {% csrf_token %}
                 <input type="hidden" name="product" class="form-control mb-2">
                 <button type="submit" class="btn btn-success">Add to Cart</button>
+
+
+                <!-- messaging  -->
+                 {% if request.user != product.seller %}
+                <a href="{% url 'messaging:start_thread' product.id %}" class="btn btn-outline-primary">
+                  Message Seller
+                </a>
+              {% else %}
+                {# Hide or show info text for the seller #}
+              {% endif %}
+                <!-- end messaging -->
              </form>
             {% else %}
                <p class="text-muted fs-7">Please log in to add items to your cart.</p>
