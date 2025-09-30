@@ -29,7 +29,7 @@ def add_to_cart(request, product_id):
             # Add new product to cart
             cart[str(product_id)] = {
                 'name': product.product_name,
-                'price': str(product.price),  # Convert Decimal to string
+                'price': str(product.price), 
             }
             messages.success(request, f"{product.product_name} has been successfully added to your cart.")
         

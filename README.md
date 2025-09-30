@@ -119,7 +119,7 @@ Product details desktop
 <a id="fonts"></a>
 ## 🎨 Fonts
 
-- lato Sans was used as the main font.
+- IM Fell French Canon SC was used as the main font.
 
 <a id="tech-stack"></a>
 ## 🛠️ Tech Stack
