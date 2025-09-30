@@ -1,6 +1,6 @@
-Marketplace is a Django-based web application and Minimum Viable Product (MVP) designed to showcase core full-stack functionality. The platform enables users to register, log in, browse products and initiate purchasing products.
+Marketplace is a Django-based web application and Minimum Viable Product (MVP) designed to showcase core full-stack functionality. The platform enables users to register, log in, browse products, initiate purchases, send messages to sellers, and manage conversations via a built-in inbox. Users can also subscribe to the newsletter to receive updates about new products and offers.
 
-This project demonstrates my ability to build scalable, modular Django applications with clean UI using Bootstrap. While this version includes essential features, it is intentionally lean to highlight core functionality. The UX and feature set can be expanded based on future goals or user feedback.
+This project demonstrates my ability to build scalable, modular Django applications with a clean UI using Bootstrap. While this version includes essential features, it is intentionally lean to highlight core functionality. The UX and feature set can be expanded based on future goals or user feedback.
 
 ## 📚 Table of Contents
 - [User Experience](#user-experience)
@@ -216,8 +216,8 @@ Below is an overview of the core entities in **Marketplace** and how they relate
 
 The W3.org html validator was use to validate the project using the deployed link
 
-- https://bookhiver-5fd96c570ace.herokuapp.com/
-  ![html validation](static/images/html-validation.png)
+- https://marketcorner-56f2b4d310a3.herokuapp.com/
+  ![html validation](static/images/html_validation.png)
 
 -![css validation](static/images/css-validation.png)
 
