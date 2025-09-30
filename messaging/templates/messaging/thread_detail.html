@@ -1,35 +1,68 @@
+{# templates/messaging/thread_detail.html #}
 {% extends "base.html" %}
+
+
 {% block content %}
-<section class="container pt-5">
-  <div class="d-flex justify-content-between align-items-center mb-3">
-    <h2 class="h5 mb-0">Messages: {{ thread.product.product_name }}</h2>
-    <a class="btn btn-sm btn-outline-secondary"
-       href="{% url 'product_detail' thread.product.id %}">View item</a>
+<div class="container py-4">
+
+  <div class="row">
+
+  <div class="col-12 mb-3">
+    <a href="{% url 'messaging:inbox' %}" class="text-decoration-none">&larr; Back to Inbox</a>
   </div>
 
-  <div class="card shadow-sm mb-3">
-    <div class="card-body" style="max-height: 50vh; overflow-y: auto;">
-      {% for m in messages %}
-        <div class="mb-3">
-          <div class="small text-muted">
-            <strong>{{ m.sender.username }}</strong>
-            <span>• {{ m.created_at|date:"M j, Y, g:i a" }}</span>
-            {% if not m.is_read and m.recipient == request.user %}<span class="badge bg-warning text-dark ms-2">new</span>{% endif %}
-          </div>
-          <div>{{ m.body|linebreaksbr }}</div>
+  <div class="col-12">
+    <div class="card mb-3">
+    <div class="card-body">
+
+      {% if thread.product.product_name %}
+        <P class="fw-bold">{{ thread.product.product_name }}</P>
+      {% endif %}
+
+      <div>
+        <h5 class="mb-1">
+          <a href="{% url 'product_detail' thread.product.id %}" class="text-decoration-none">
+            {{ thread.product.title }}
+          </a>
+        </h5>
+        <div class="text-muted fs-6">
+           Listed by: {{ thread.seller }}
         </div>
-      {% empty %}
-        <p class="text-muted mb-0">No messages yet.</p>
-      {% endfor %}
+      </div>
     </div>
   </div>
+  </div>
 
-  <form method="post" class="card p-3 shadow-sm">
+  <div class="col-12 list-group">
+    {% if messages %}
+      {% for m in messages %}
+        <div class="list-group-item">
+          <div class="d-flex justify-content-between align-items-baseline">
+            <strong>{{ m.sender }}</strong>
+            <span class="text-muted small" title="{{ m.created_at }}">
+              {{ m.created_at|date:"M d, Y H:i" }}
+            </span>
+          </div>
+          <p class="mb-0 mt-2">{{ m.body|linebreaksbr }}</p>
+        </div>
+      {% endfor %}
+    {% else %}
+      <div class="list-group-item text-muted">
+        No incoming messages for this thread.
+      </div>
+    {% endif %}
+  </div>
+
+
+  <form method="post" action="{% url 'messaging:thread_detail' thread.id %}" class="col-10 mt-3">
     {% csrf_token %}
-    {{ form.body }}
-    <div class="mt-2 text-end">
-      <button class="btn btn-primary">Send</button>
+    <div class="input-group">
+      <textarea name="body" class="form-control" rows="2" placeholder="Write a message…" required></textarea>
+      <button class="btn btn-primary w-100">Send</button>
     </div>
   </form>
-</section>
+  
+  </div>
+</div>
 {% endblock %}
+

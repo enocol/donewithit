@@ -5,7 +5,7 @@ from subscriptions.forms import NewsletterSignupForm
 # Create your views here.
 def home(request):
     '''Home page view'''
-    featured_products = Product.objects.filter(is_featured=True)[:5]  # Get up to 5 featured products
+    featured_products = Product.objects.filter(is_featured=True) 
     categories = Category.objects.all() 
     
 

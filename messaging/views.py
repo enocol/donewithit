@@ -9,16 +9,48 @@ from products.models import Product
 from .models import Thread, Message
 from .forms import MessageForm
 
+from django.contrib.auth.decorators import login_required
+from django.db.models import Q, Prefetch, Max, Count
+from django.shortcuts import render
+
 @login_required
 def inbox(request):
-    threads = Thread.objects.filter(buyer=request.user) | Thread.objects.filter(seller=request.user)
-    threads = threads.order_by("-last_message_at", "-updated_at").select_related("product", "buyer", "seller")
-    # simple unread count per thread
-    unread_counts = {
-        t.id: Message.objects.filter(thread=t, recipient=request.user, is_read=False).count()
-        for t in threads
-    }
-    return render(request, "messaging/inbox.html", {"threads": threads, "unread_counts": unread_counts})
+    user = request.user
+
+    inbound_qs = (
+        Message.objects
+        .filter(recipient=user)
+        .select_related("sender")
+        .order_by("-created_at")
+    )
+
+    threads = (
+        Thread.objects
+        .filter(Q(buyer=user) | Q(seller=user))
+        .filter(messages__recipient=user)  
+        .select_related("product", "buyer", "seller")
+        .prefetch_related(Prefetch("messages", queryset=inbound_qs, to_attr="inbound_messages"))
+        .annotate(
+            last_inbound_at=Max("messages__created_at", filter=Q(messages__recipient=user))
+        )
+        .order_by("-last_inbound_at", "-updated_at")
+        .distinct()
+    )
+
+   
+    unread_rows = (
+        Message.objects
+        .filter(recipient=user, is_read=False, thread__in=threads)
+        .values("thread_id")
+        .annotate(c=Count("id"))
+    )
+    unread_counts = {row["thread_id"]: row["c"] for row in unread_rows}
+
+    return render(request, "messaging/inbox.html", {
+        "threads": threads,
+        "unread_counts": unread_counts,
+    })
+
 
 @login_required
 def start_thread(request, product_id):
@@ -44,12 +76,12 @@ def start_thread(request, product_id):
 @login_required
 def thread_detail(request, pk):
     thread = get_object_or_404(Thread, pk=pk)
-    # permission: only buyer or seller can view
+
     if request.user not in (thread.buyer, thread.seller):
         messages.error(request, "You don't have access to this conversation.")
         return redirect("messaging:inbox")
 
-    # mark incoming messages as read
+
     Message.objects.filter(thread=thread, recipient=request.user, is_read=False).update(is_read=True)
 
     if request.method == "POST":
@@ -62,7 +94,7 @@ def thread_detail(request, pk):
             msg.save()
             send_email = msg.recipient.email
             if send_email:
-                # Send email notification logic here
+                # Send email notification to recipient
                 
                 subject = f"New message about {thread.product.product_name}"
                 message = f"You have a new message from {msg.sender} regarding the product '{thread.product.product_name}'.\n\nMessage:\n{msg.body}\n\nView the conversation: http://{request.get_host()}/messages/thread/{thread.id}/"

@@ -3,28 +3,28 @@ Marketplace is a Django-based web application and Minimum Viable Product (MVP) d
 This project demonstrates my ability to build scalable, modular Django applications with clean UI using Bootstrap. While this version includes essential features, it is intentionally lean to highlight core functionality. The UX and feature set can be expanded based on future goals or user feedback.
 
 ## 📚 Table of Contents
-
+## 📚 Table of Contents
 - [User Experience](#user-experience)
-
   - [For General Users](#for-general-users)
   - [For Admin Users](#for-admin-users)
   - [Accessibility Considerations](#accessibility-considerations)
-
 - [Wireframes](#wireframes)
 - [Screenshots](#screenshots)
 - [Features](#features)
 - [Fonts](#fonts)
 - [Tech Stack](#tech-stack)
 - [Manual Testing](#manual-testing)
-- [Automatic Test](#automatic-test)
 - [HTML and CSS Validation](#html-and-css-validation)
 - [Installation](#installation)
 - [Deployment](#deployment)
 - [Acknowledgment](#acknowledgment)
 - [License](#license)
 
+
+<a id="user-experience"></a>
 ## 🧠 User Experience
 
+<a id="for-general-users"></a>
 ### ✅ For General Users
 
 As a regular user of **Marketplace**, I want to:
@@ -40,6 +40,7 @@ As a regular user of **Marketplace**, I want to:
 - View confirmation messages after actions like adding a products or deleting a product plus registration and signin.
 - Restart or return to the products easily.
 
+<a id="for-admin-users"></a>
 ### 🔧 For Admin Users
 
 As an admin, I want to:
@@ -51,6 +52,7 @@ As an admin, I want to:
 - Receive validation messages when managing products.
 - Upload media through integrations like Cloudinary.
 
+<a id="accessibility-considerations"></a>
 ### ♿ Accessibility Considerations
 
 - Use semantic HTML and heading structure for screen readers.
@@ -63,7 +65,8 @@ As an admin, I want to:
 
 #
 
-## Wire Frames
+<a id="wireframes"></a>
+## Wireframes 
 
 Desktop
 
@@ -77,6 +80,7 @@ Mobile
 
 
 
+<a id="screenshots"></a>
 ## 📸 Screenshots
 ## home page
 ![home](static/images/desktop_version.png)
@@ -101,6 +105,7 @@ Product details desktop
 
 ![edit product page](static/images/edit_product.png)
 
+<a id="features"></a>
 ## 🚀 Features
 
 - 🔍 Search for products by title 6r descr
@@ -111,10 +116,12 @@ Product details desktop
 
 ---
 
+<a id="fonts"></a>
 ## 🎨 Fonts
 
 - lato Sans was used as the main font.
 
+<a id="tech-stack"></a>
 ## 🛠️ Tech Stack
 
 - **Backend**: Django 5+
@@ -125,7 +132,8 @@ Product details desktop
 
 ---
 
-## Manaul Test
+<a id="manual-testing"></a>
+## Manual Testing  <!-- fix "Manaul Test" typo -->
 
 | Test Case                    | Action                                    | Expected Outcome                                 |
 | ---------------------------- | ----------------------------------------- | ------------------------------------------------ |
@@ -195,6 +203,7 @@ Product details desktop
 
 
 
+<a id="html-and-css-validation"></a>
 ## ✅ HTML and CSS Validation
 
 The W3.org html validator was use to validate the project using the deployed link
@@ -298,7 +307,8 @@ npm install
 
 ---
 
-### 🚀 Deployment Procedure
+<a id="deployment"></a>
+## 🚀 Deployment
 
 To deploy marketplace to a live production environment (e.g., Heroku), follow these steps:
 

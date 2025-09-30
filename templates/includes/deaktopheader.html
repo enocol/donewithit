@@ -11,20 +11,20 @@
             
                 {% include 'includes/searchform.html' %}
             
-            <ul class="d-flex justify-content-end gap-3 w-auto mb-0 ps-0">
+            <ul class="d-flex justify-content-end gap-2  mb-0 ps-0">
                 <li class="">
-                    <a class="" href="{% url 'home' %}">Home</a>
+                    <a class="" href="{% url 'home' %}"><i class="fa-solid fa-house"></i></a>
                 </li>
 
                  <li class="">
-                    <a class="" href="{% url 'product_list' %}">Products</a>
+                    <a class="" href="{% url 'product_list' %}">Listings</a>
                 </li>
                 
                {% if user.is_authenticated %}
               
                <li class="">
                   <span><i class="fa-solid fa-plus white-text"></i></span>
-                <a class="p-1" href="{% url 'product_create' %}"> Post a Product</a>
+                <a class="p-1" href="{% url 'product_create' %}"> List an Item</a>
                   
                 </li>
                 {% if user.is_authenticated %}

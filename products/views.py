@@ -18,7 +18,7 @@ def product_list(request):
     category_filter = request.GET.get('category', None)
     filter_type = request.GET.get("filter")
     category_label = dict(Category.CATEGORY_TYPES).get(category_filter, 'Unknown')
-    products = Product.objects.all()
+    products = Product.objects.select_related('category', 'seller').all()
     sort_option = request.GET.get('sort', '')
 
     if filter_type == "new_arrivals":
@@ -65,7 +65,6 @@ def product_list(request):
             messages.info(request, f"No products found matching '{search_query}'.")
             products = Product.objects.none()
     elif "search" in request.GET:
-        # Only show this if the user actually submitted the search param but it's empty
         messages.error(request, "Please enter a valid search term.")
         products = Product.objects.none()
 

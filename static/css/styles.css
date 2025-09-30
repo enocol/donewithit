@@ -1,11 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+French+Canon+SC&display=swap');
+
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: "Lato", sans-serif;
+    font-family: "IM Fell French Canon SC", serif;
     scroll-behavior: smooth;
     list-style: none;
 }
@@ -417,6 +419,10 @@ section {
     box-shadow: none;
 }
 
+li a {
+    list-style: none;
+    font-family:  "IM Fell French Canon SC", serif;
+}
 
 /* media queries */
 
