@@ -3,7 +3,6 @@ Marketplace is a Django-based web application and Minimum Viable Product (MVP) d
 This project demonstrates my ability to build scalable, modular Django applications with clean UI using Bootstrap. While this version includes essential features, it is intentionally lean to highlight core functionality. The UX and feature set can be expanded based on future goals or user feedback.
 
 ## 📚 Table of Contents
-## 📚 Table of Contents
 - [User Experience](#user-experience)
   - [For General Users](#for-general-users)
   - [For Admin Users](#for-admin-users)
@@ -13,6 +12,7 @@ This project demonstrates my ability to build scalable, modular Django applicati
 - [Features](#features)
 - [Fonts](#fonts)
 - [Tech Stack](#tech-stack)
+- [Database Schema (ERD)](#database-schema-erd)
 - [Manual Testing](#manual-testing)
 - [HTML and CSS Validation](#html-and-css-validation)
 - [Installation](#installation)
@@ -131,6 +131,14 @@ Product details desktop
 - **Authentication**: `django-allauth`
 
 ---
+
+<a id="database-schema-erd"></a>
+## 🗺️ Database Schema (ERD)
+
+Below is an overview of the core entities in **Marketplace** and how they relate
+
+![Marketplace ERD](static/images/erd.png)
+
 
 <a id="manual-testing"></a>
 ## Manual Testing  <!-- fix "Manaul Test" typo -->
@@ -295,6 +303,7 @@ If using **Visual Studio Code**, add this in `.vscode/settings.json`:
 
 Make sure the ESLint extension is installed in VSCode.
 
+<a id="installation"></a>
 ## ⚙️ Installation
 
 1. Clone the repository:
@@ -388,13 +397,13 @@ python manage.py migrate
 This process ensures BookHive is secure, modular, and scalable in a live environment.
 
 ---
-
+<a id="acknowledgment"></a>
 ## 🙌 Acknowledgment
 
 **Author**: marketplace was created by Enoh Collins as a full-stack Django portfolio project. Feel free to fork, star, and contribute!
 
 ---
-
+<a id="license"></a>
 ## 📜 License
 
 MIT License — see LICENSE file for details.
